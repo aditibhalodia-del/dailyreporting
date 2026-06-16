@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IMS Daily Drill — CAT 26</title>
+<style>
+:root {
+  --navy: #1F3864;
+  --gold: #C8941A;
+  --gold-light: #F5E6C0;
+  --cream: #FAF8F4;
+  --white: #FFFFFF;
+  --slate: #5A6475;
+  --border: #E2DDD5;
+  --green: #2D7A4F;
+  --green-bg: #EAF4EE;
+  --shadow: 0 2px 12px rgba(31,56,100,0.10);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream); color: #1a1a2e; min-height: 100vh; }
+
+/* TOPBAR */
+.topbar { background: var(--navy); color: #fff; padding: 0 20px; height: 54px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+.topbar-brand { display: flex; align-items: center; gap: 10px; }
+.topbar-title { font-size: 16px; font-weight: 700; }
+.topbar-sub { font-size: 11px; color: rgba(255,255,255,0.6); }
+.topbar-user { font-size: 12px; color: var(--gold); font-weight: 600; }
+
+/* SCREENS */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* LOGIN */
+.login-wrap { max-width: 400px; margin: 40px auto; padding: 0 20px; }
+.login-logo { text-align: center; margin-bottom: 24px; }
+.login-logo img { height: 70px; width: auto; }
+.login-tagline { text-align: center; margin-bottom: 24px; }
+.login-tagline .tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+.login-tagline h1 { font-size: 26px; font-weight: 800; color: var(--navy); margin-top: 4px; }
+.login-tagline p { font-size: 13px; color: var(--slate); margin-top: 4px; }
+.login-card { background: var(--white); border-radius: 14px; padding: 28px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--navy); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 5px; }
+.form-group select, .form-group input { width: 100%; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; color: #1a1a2e; background: var(--cream); outline: none; }
+.form-group select:focus, .form-group input:focus { border-color: var(--navy); }
+.login-btn { width: 100%; padding: 13px; background: var(--navy); color: #fff; border: none; border-radius: 10px; font-size: 15px; font-weight: 700; cursor: pointer; margin-top: 4px; }
+.login-btn:hover { background: #162a50; }
+.faculty-link { text-align: center; margin-top: 12px; }
+.faculty-link button { background: none; border: none; font-size: 12px; color: var(--slate); cursor: pointer; text-decoration: underline; }
+
+/* MAIN */
+.main-wrap { max-width: 680px; margin: 0 auto; padding: 20px 20px 60px; }
+.day-header { margin-bottom: 20px; }
+.day-header h2 { font-size: 22px; font-weight: 800; color: var(--navy); }
+.day-header p { font-size: 13px; color: var(--slate); margin-top: 3px; }
+
+/* SECTION */
+.sec { background: var(--white); border-radius: 14px; border: 1px solid var(--border); margin-bottom: 14px; overflow: hidden; }
+.sec-hdr { display: flex; align-items: center; gap: 10px; padding: 15px 16px; cursor: pointer; user-select: none; }
+.sec-hdr:hover { background: #FDFCFA; }
+.sec-badge { padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
+.badge-vocab { background: #EAE0FF; color: #5B2DB3; }
+.badge-aeon  { background: var(--gold-light); color: #7A5500; }
+.badge-todo  { background: var(--green-bg); color: #1B5C38; }
+.sec-hdr-text { flex: 1; }
+.sec-hdr-text h3 { font-size: 15px; font-weight: 700; color: var(--navy); }
+.sec-hdr-text p  { font-size: 12px; color: var(--slate); margin-top: 1px; }
+.sec-chevron { font-size: 16px; color: var(--slate); transition: transform .2s; }
+.sec.open .sec-chevron { transform: rotate(180deg); }
+.sec-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+.sec.open .sec-body { display: block; }
+
+/* VOCAB */
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; padding-top: 14px; }
+.v-card { border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden; cursor: pointer; transition: box-shadow .15s; }
+.v-card:hover { box-shadow: 0 2px 8px rgba(31,56,100,0.12); }
+.v-front { background: var(--navy); color: #fff; padding: 16px 12px; text-align: center; }
+.v-front .word { font-size: 17px; font-weight: 800; }
+.v-front .pos  { font-size: 10px; color: var(--gold); margin-top: 3px; text-transform: uppercase; letter-spacing: 1px; }
+.v-back { display: none; background: var(--cream); padding: 12px; }
+.v-back .meaning { font-size: 13px; font-weight: 600; color: #1a1a2e; margin-bottom: 5px; }
+.v-back .eg { font-size: 11px; color: var(--slate); font-style: italic; }
+.v-card.flipped .v-front { display: none; }
+.v-card.flipped .v-back  { display: block; }
+.vocab-hint { font-size: 11px; color: var(--slate); text-align: center; margin-top: 10px; }
+.flip-all-btn { display: block; margin: 12px auto 0; padding: 8px 18px; background: none; border: 1.5px solid var(--navy); border-radius: 8px; font-size: 12px; font-weight: 700; color: var(--navy); cursor: pointer; }
+
+/* AEON */
+.aeon-wrap { padding-top: 14px; }
+.aeon-card { border: 1.5px solid var(--gold-light); border-radius: 10px; padding: 16px; background: #FFFDF5; }
+.aeon-card .a-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.aeon-card .a-meta  { font-size: 12px; color: var(--slate); margin-bottom: 12px; }
+.aeon-read-btn { display: inline-block; padding: 10px 20px; background: var(--gold); color: var(--navy); border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; }
+
+/* TODO */
+.todo-list { padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.todo-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer; background: var(--cream); transition: all .15s; }
+.todo-item.done { background: var(--green-bg); border-color: #A8D5B8; }
+.todo-cb { width: 22px; height: 22px; border: 2px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+.todo-item.done .todo-cb { background: var(--green); border-color: var(--green); color: #fff; }
+.todo-text { font-size: 14px; font-weight: 600; color: #1a1a2e; }
+.todo-sub  { font-size: 12px; color: var(--slate); margin-top: 2px; }
+.todo-item.done .todo-text { text-decoration: line-through; color: var(--slate); }
+
+/* SUBMIT */
+.submit-wrap { margin-top: 20px; }
+.submit-btn { width: 100%; padding: 15px; background: var(--gold); color: var(--navy); border: none; border-radius: 12px; font-size: 16px; font-weight: 800; cursor: pointer; }
+.submit-btn:hover { background: #b8820f; }
+.submitted { text-align: center; padding: 20px; background: var(--green-bg); border: 1.5px solid #A8D5B8; border-radius: 12px; display: none; }
+.submitted h3 { color: var(--green); font-size: 17px; margin-bottom: 4px; }
+.submitted p { color: var(--slate); font-size: 13px; }
+
+/* PDF */
+.pdf-hdr { display: none; align-items: center; gap: 14px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 2px solid var(--navy); }
+.pdf-btn { padding: 7px 14px; background: var(--gold); color: var(--navy); border: none; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; }
+
+@media(max-width:500px){
+  .vocab-grid { grid-template-columns: 1fr 1fr; }
+}
+@media print {
+  .topbar, .submit-wrap, .pdf-btn, .flip-all-btn, .aeon-read-btn, .faculty-link,
+  #aeon-sec, #todo-sec, .vocab-hint { display: none !important; }
+  #vocab-sec .sec-hdr { display: none !important; }
+  .sec-body { display: block !important; }
+  .v-front { background: #1F3864 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .pdf-hdr { display: flex !important; }
+  .vocab-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .v-card { break-inside: avoid; }
+  .v-card.flipped .v-front { display: block !important; }
+  .v-card.flipped .v-back  { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">
+    <div>
+      <div class="topbar-title">IMS Daily Drill</div>
+      <div class="topbar-sub">CAT 26</div>
+    </div>
+  </div>
+  <div class="topbar-user" id="topbar-user" style="display:none"></div>
+</div>
+
+<!-- LOGIN -->
+<div class="screen active" id="screen-login">
+  <div class="login-wrap">
+    <div class="login-logo"><img id="logo-img" src="" alt="IMS"></div>
+    <div class="login-tagline">
+      <div class="tag">CAT 26 · Daily Drill</div>
+      <h1>Show up every day.</h1>
+      <p>15 words · Aeon article · Daily tasks</p>
+    </div>
+    <div class="login-card">
+      <div class="form-group">
+        <label>Batch</label>
+        <select id="batch-sel" onchange="loadStudents()">
+          <option value="">— Select Batch —</option>
+          <option value="2604">CAT 2604</option>
+          <option value="2636">CAT 2636</option>
+          <option value="2641">CAT 2641</option>
+          <option value="2642">CAT 2642</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Name</label>
+        <select id="name-sel"><option value="">— Select Batch First —</option></select>
+      </div>
+      <div class="form-group" id="pin-group" style="display:none">
+        <label>IMS PIN</label>
+        <input type="text" id="pin-disp" readonly>
+      </div>
+      <button class="login-btn" onclick="doLogin()">Start Today's Drill →</button>
+    </div>
+    <div class="faculty-link"><button onclick="doFacultyLogin()">Faculty Preview</button></div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="screen" id="screen-main">
+  <div class="main-wrap">
+    <div class="pdf-hdr" id="pdf-hdr">
+      <img id="pdf-logo" src="" style="height:50px;width:auto;" alt="IMS">
+      <div>
+        <div style="font-size:17px;font-weight:800;color:var(--navy);" id="pdf-day-label"></div>
+        <div style="font-size:12px;color:var(--slate);">IMS Daily Drill · CAT 26 · Aditi Ma'am</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+      <div class="day-header" style="margin-bottom:0">
+        <h2 id="day-heading"></h2>
+        <p id="day-date"></p>
+      </div>
+      <button class="pdf-btn" onclick="printDay()">⬇ PDF</button>
+    </div>
+
+    <!-- VOCAB -->
+    <div class="sec open" id="vocab-sec">
+      <div class="sec-hdr" onclick="toggleSec('vocab-sec')">
+        <span class="sec-badge badge-vocab">VOCAB</span>
+        <div class="sec-hdr-text">
+          <h3>15 Words for Today</h3>
+          <p>Tap a card to reveal meaning</p>
+        </div>
+        <span class="sec-chevron">▾</span>
+      </div>
+      <div class="sec-body">
+        <div class="vocab-grid" id="vocab-grid"></div>
+        <p class="vocab-hint">Tap any card · tap again to flip back</p>
+        <button class="flip-all-btn" onclick="flipAll()">Reveal All</button>
+      </div>
+    </div>
+
+    <!-- AEON -->
+    <div class="sec open" id="aeon-sec">
+      <div class="sec-hdr" onclick="toggleSec('aeon-sec')">
+        <span class="sec-badge badge-aeon">AEON</span>
+        <div class="sec-hdr-text">
+          <h3 id="aeon-title-hdr">Today's Article</h3>
+          <p id="aeon-meta-hdr"></p>
+        </div>
+        <span class="sec-chevron">▾</span>
+      </div>
+      <div class="sec-body">
+        <div class="aeon-wrap">
+          <div class="aeon-card">
+            <div class="a-title" id="aeon-title"></div>
+            <div class="a-meta" id="aeon-meta"></div>
+            <a id="aeon-link" href="#" target="_blank" class="aeon-read-btn">Read on Aeon →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TODO -->
+    <div class="sec open" id="todo-sec">
+      <div class="sec-hdr" onclick="toggleSec('todo-sec')">
+        <span class="sec-badge badge-todo">TO DO</span>
+        <div class="sec-hdr-text">
+          <h3>Today's Checklist</h3>
+          <p>Tick off as you go</p>
+        </div>
+        <span class="sec-chevron">▾</span>
+      </div>
+      <div class="sec-body">
+        <div class="todo-list" id="todo-list"></div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-wrap">
+      <button class="submit-btn" onclick="submitDay()">Submit Today's Drill ✓</button>
+      <div class="submitted" id="submitted-msg">
+        <h3>✓ Submitted!</h3>
+        <p>Well done. See you tomorrow.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── LOGO (embedded) ──
+const LOGO_PNG = 'data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADhAOEDASIAAhEBAxEB/8QAHQABAQACAgMBAAAAAAAAAAAAAAcGCAIFAQMJBP/EAE4QAAEDBAECAwQGBQUMCgMAAAEAAgMEBQYRBxIhEzFRCCJBYRQWMleW0RVCcYGRM2JygrEXIzc4UnR1oaKztNMYJDQ2OURWc4OSk6Sy/8QAFgEBAQEAAAAAAAAAAAAAAAAAAAEC/8QAGhEBAQEAAwEAAAAAAAAAAAAAAAERAiExEv/aAAwDAQACEQMRAD8A3LREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBFLeT+euOMBnkt9ddzcruw9H6OtoE0zX/BrzsMjJ9HOB9AVgP90n2hM774JxpT41bnn3K6/Eh5Hr0v6CP3MePmUGyGx6otUshxnkhu3cke03Zsb8T7VLS1LIdb+DS10JP8CsWnxfibe7n7T2RVr/AIugqnyN+evt/wBqLjdZFpTT4vxNvqtntPZFRSb7PmqpIgP/AOP7VlFgxrkh3vcb+05ZskLO7KWqqGTF3yJc6cj0+yEMbXItcHcj+0Ngp3nPGtNk1uYffrrESXhvr0s6yf3sYPmFnvGPPfHOezR0FDdXWy7vd0fo25NEMxf8WsOyx5+TXE+oCGKkiIiCIiAiIgIiICIiAiIgIiICIiAiIgIi9VXUQUlNJU1MrIYImF8kj3aaxoGyST5AAeaD8OUX+z4xYaq+X6vhoLdSM65p5T2HoAPMknsANkkgDutcbnlHIvOMFVPZa93HnGMHV9IvVS7w6mtjHZxadjpb5+RDR8XOO2D8V1uFFzNd7hyJnNVJbeIMWlcKCkftpuszT0mRzR3IJPSGjZOwwaJk3D+a+X71yTXNo2t/RGMUhDbfZ4SGsY1vZjpA3s5+taH2W+TfLqJqRn0vJvFXFTDQcQYpBf7xGC1+R3cFwLvIujHZzhsA6Z4bD5jamOb8tcjZlI/9OZbcTTvO/olJJ9GgA9OiPXUP6XUsIBB8kRrHFkbGEljGt2dnQ1srkvAc0nQcD+wryii4vYx5Bexri07GxvRXLY3rY36IgzbCeWORsNkYbFltxbA07+iVcn0mnI9OiTfSP6PSfmqc3k7irlaP9HcwYlBY7tK0RsyO0NIAd5B0g0XAbPk4SMHmdLXtETI3EtmUcicHw0tReK13IvGM/Sae80r/ABKihid2aXHZ6m9x5ktPkHN7MOx2K5BZsosFLfbBcIbhbqpnVDPEex+BBHmCDsEHRBBBG189eFOXL5xvXGkLTdcYq3EXCzzHqY9juz3RB3Zr9fD7LvJ3n1C3W240PDd2t/JOCVMlw4iymVv6RomAk2qZ3uiRrT3bojpLT3HSWHZEYBixtei9dLPDVU0VTTSsmglYHxyMcC17SNggjzBBXsRBERAREQEREBERAREQEREBERAUR9re7XOpxuxca2GUx3TNbky3ueCNx0oIM79fEaLQR/klytyheUsZdPbUxGknb1stGLVNfCD5NkkkdET/AA1/BCIJ7WuSUlHdLXxHjJNPjuK08TJYmu7S1RZsdfqWtcDv4ukeT3AWynAOG4hX8JYZW12K2KqqZrLTPlmmt8T3yOMY25zi3ZJ9StEM9r57rnmRXKpeXy1N1qpSSd6BmeQP3DQ/cvoZ7Of+AbBv9B0v+7CNVpp7WtqpKDnq5Wuy2ynpojBSNhpaSFsbXPdG3s1rQBtxP7yVsTwj7NWKY5Zqa45vbqXIL/KwPliqW+JSUpOj0MjPuvI/y3Ane9Bo7Kc8kUsNb7fFjpqhgfE6qonlpGwTHTmRv+0wLcU+WkS1h+Q8W8c363OoLnhNhlhI00soo4ns+bHsAc0/MEKMYh7JuPUGeXCuyC4S3bG43tdbLeXFkj99yKh7ddQaewDddQ+18QcW4L5zzzJPaHhst4uYqbLeamqhjofAjaykDI5JIywgdWwIw07J3snz0tv5XBsbnHyAJQ8Yq/jTjt1rFrdguNGiDekQm1w9I/2fP5rV72pfZ+oMTtEubYNFJFaoDu5W5z3SfR2k/wAtGTs9AJ05pJ6R3GgCF6+Ced+RMk53tdtvF3bVWa+VcsZoHU8bWUzfDkezw3ABwLeloOydje+52Nxrxb6W62mrtlbE2Wmq4HwTMcNhzHtLXA/uKE6aE+zFw0OUrxV194qJ6bHLY9rKgwODZKmUjq8Frv1R06LneenNA0Tsbj2jh/iu1UgpaXj/ABt7Q0NL6i3xzyO/pPkDnOPzJKlnsE3S3u4zu2PRztNwt11kfO1xHW9kjWdEmvQlrm7/AJqz3nHiWo5KfRzQZzf8efRxuayGkk3TPcTvrfGC0l3w31eX70Le079pPgXAafjy95djdsZj9wtFHJWeHRDpp6hrAXFjovst2N6c3RB1vY7KSeyVktJV3a6cS5KfpGO5XTysjhe7tFUhhJLfQuY09/g5jCO5XdcpWTnDijBrvaLtkP1uwu6UklBPUTPfK+l8VpaHe+TJEdka957D5EAkKEYNcJrTnGP3SneWS0l0pZmkfzZWkj942P3osbu+yTdrjR2C/wDGd8mM1zwq5voGvJ7yUjiTA/XwGg4AfBoareoVjDW2z22MrpKdgbHd8Vp66fXbckcjImn/AOo/1lXVGRERAREQEREBERAREQEREBERAUJ5OkOO+1jxzkMremkvVvqrJJKfstkG3xtP9J72gfsV2Uw9pjBq7N+Mpm2MOGRWadl1s72a6/pEWyGtJ7bc3qA326i0nyQjRXmOwzY1ytlFlmjczwbnM+LY0DFI7xIyP6j2rfv2c/8AANg3+g6X/dhazc1W6LmPi+28yY1TA3u2QCiye3xj++RBncv6T39wku7jZjeD+ppZPxT7TmD4nxpjmM3Cy5HNV2u2w0s0kEMBjc5jACWl0oJHb4gI1e3X51/4gVi/9+m/4N63AXz/AMk5Xx+5e09beUoaC6Ms9LJC99O+OP6SeindGdAP6fMj9YdldR7XvHn/AKeywf8AwU//ADkSytePZk/xmcW/z+s/4WoX0Oqf+zyf0D/YvmlxBllvw7l6zZhcqeqnoaGpnmljp2tMpD4ZWDQc4De3jzI+K2ll9rvj18b2DH8rBcCO8FP/AM5F5Na/Zk/xgsK/z+T/AIeVfSBfMXiDJKLDuUMeym5Q1M1HbKl000dO1pkcDE9mmhxA3tw8yFth/wBL3jzf/d/K/wD8FP8A85CxJPZq4vveYWS85diOa12K5Ja7tJRwyxsD4JojHG/pe3sT3cfPqb2G2khbH8TU3O9JkEtNyPXYlX2RkDhHU0IeKp8ux0nQa1nTrq37vppal8Ec4XXip1woYbNS3az3Cr+lTROlMM7HkBpc14Dh9lrfdLfMeY2ri72xcQ+jbbhuSmo19kupwzf9LxN6/qoWVZuc3W5vDWZfpTw/opstUHh3xJicGgfPq1r56Xz34esU+TcqYvZIWlxqLnC6XQ2BFG4SSE/LoY5ZdzfztlXJ8Atc1PDZbA1webfBIZDM4HYdLIQOvXmGhrQD3OyARmvCVuh4f4yufM+S04/TFxpzR4xb5AfEl8TuH6Hf3yAew2I2E/r6Q8ix8bSjIva25Ev8LC6lslspbIyYeTnkiSRo+bXseCrqph7M2D1uE8aRC9hzshvNQ+63d79dZnl0el2u22tDQddurqI81T0ZEREBERAREQEREBERAREQEREBERBr1yliWScXZtV8tcb0DrhbqzvlGPs+zOzZLp42gH3u5J13BJdohzwpBm3FGP8AI1ll5D4Nljq6Z5L7jjpIZPSSEbIjbvQ/ob0R3YSNNW8hG/NQzkfgmUZC/OOJr0cOykdT5Iovdo60k7IewAhuz5+65pPctJ7osaIVEU1PUy01TDLBUQuLJYZWFj43Dza5p7tPyPdcFtDm+VY/X1Udl9pPjGqsd3/koMltMR6ZNeRDmElw7E9LTKPVrfJY3N7PFuyaB9bxNyXYMmhb/wCTrJRFUx/JxYD3+TmMRrUCRUe/cGct2V7xVYLc542+UlE6OqDvmBG5zv4gLE6nD8xpndNRhuTwn0ks1S3+1iLsdIi7unw/MaggU+GZRMSdAR2apd/YxZXYeDOW7zKxtNgtzp2O85a0spWt/aJHNd/AFDYnK5wRS1FRFTU8Mk88zgyKKJhe+Rx8mtaO7j8gr1D7O9vxmnZXcs8lWHGoD50lHJ41RJ8mF4HvfJrHrJMIyrH7dUSWX2beMqu/Xjp8ObJbrEemMH4lzyC0fHpcYh6NPkifTHsG4osHHlmj5D5ymjoqaM+Jbsc219RVyDuBI3ej6+HvQHd5A21V3i/Esj5Uzil5Y5HoHW+1UXfFrA8e7AzzbPIPiewI35kA6Aa0LtOOeB5HZCzOeWr07MMp218cUvvUdGR3AYwgB2joj3WtBGw3fdXQIzaDyRERBERAREQEREBERAREQEREBFiOd5DmFlqqWLGcBmyiKVjnTyx3SCl8BwI00iTu7YJOx5a/Ysc+vfK33H1f4ko/zQVFFLvr3yt9x9X+JKP80+vfK33H1f4ko/zQVFFLvr3yt9x9X+JKP80+vfK33H1f4ko/zQUi52+gulFJQ3Kip62llHTJBURCRjx6Fp2Co1mHsv8AF97qfptqpK7GK4HqZNaqjoaw/wA2N4c1v9UNXe/Xvlb7j6v8SUf5p9e+VvuPq/xJR/mgwMcI8yWAdGIc7XJ1O3+ThucT5NfIue6QfwaF5GP+1vR7jizbD69o7CSVjWk//rBZ39e+VvuPq/xJR/mn175W+4+r/ElH+aLrBDj/ALW9ZqOXNcPoGnsXxMDnD+NMVx/uI8yZB7uYc63FsDv5SG2RPj38tsdGP4tKz3698rfcfV/iSj/NPr3yt9x9X+JKP80NdDh/svcX2Sp+m3Slr8mrXd3zXWo6mvP85jA1rv6wcrLa7dQWqhiobZRU1FSRDpjgp4hHGwegaOwU4+vfK33H1f4ko/zT698rfcfV/iSj/NEVFFLvr3yt9x9X+JKP80+vfK33H1f4ko/zQVFFLvr3yt9x9X+JKP8ANPr3yt9x9X+JKP8ANBUUUu+vfK33H1f4ko/zWSYHkGX3qpq48mwKbF44mMMEkl0gqvHJJ6hqPu3Wge/ntBlqIiAiIgIiICIiAiIgxbO2ZXDSVNysN8tlBBS0ckr4am2OqHSPaC7YcJWdI0ANaP7VjPGWUX2sxLGMuzLK8ep6O/W6KaOjbQGmcJ5IhKGtldM4ODWNkJHTsgb2NFZ1mJ1iN5J+FBP/ALtyhVHSUtbxJ7PFNWQxzwuuVtLo5GgtcRbagjYPn3AQXWzZLj95kijtN5oK581K2sjbBO15fA5xa2UAHuwua4B3kdFcvrDYhRVlabvQimoqh1NVS+O3phmBAMbjvs7bgOnz2QFObhdLTjftKdd4raS101yxFkVFJUPbFHK+GqkdIwOOh1BsrHa89En4LFsbhoMiw/JZabK4scqDyLVVNqr542ujdUNcHRtdG8tD2vAOm7BOwQd6QUvJeT8Ws0FlqI7hTV0F2uv6MZLBO0theOrxHPO+wYW9JHmCQDr4d9csqxu2CI3C+UFL4sH0lglna0mEa3Jo+TBsbcew35qMXvIrvcrRi1ZkzbTEbRyLT0ktyt+2UdW0RSNE7eonpBfJ4bgXHT2uG1++xVclt5mz4XHKrfZKi5vpKq3yV0DHsrKBtMxoMUjntBayQy7aPIv2ft7IV675DYrRb4bhdLxQ0dJUOa2CaadrWyucNtDDv3iR3AG9rEcAyCovXKebQRXYV9mp6e2SW8Rva+JviRSl5YR59RaN9/MLBMVorViXKGAwVd8ZW49HjVfTWO4VAbFAal9Sx/hs/VB8DTWaPdjDrayHiKpttXzbynU2tjRTyutTvEaPcnd4EgdI31aSCN+RLSe+9oO75LyagZkVowg5RNYKu6xzSvqqYxieNjA0Nawva5rS5zxolp7NcBokEZLX5VjVqqzb7jf7fT1UTWeKyaoaHRh3Zhf/AJPUfLet/BYjnDgOfuNwSN/o+9HW/wCZSrHeMLjZLDxpmFJmtRTR3Nl2ub77DUkeLU+LK/wj0nu8SQGFrNb2AGjy0gql+yfHLACb5fLdbNQPqf8ArVQ2L+9MLWuf7x+yC9gJ9XAfELzld7iseH3XIxBJWRW+gmrfCi7umbHGX9LfmdaH7VEeOLLXRZZw/b8upTLdKLC690jKodb4pOukaA7f6wY7pP71dMiuVvsmP111ubui30VO+apIjL9RtaS73QCT2B7AIMUwGry290GP5McislfarlTfSKymp6MhrA+PqYIJA8k9LtNd1g7Gz7pGllDchsTrHU3xt4oTa6XxfpFYJ2+FF4RLZOp29DpLXA78iDtRyhsGN2DkzDq3iK7CGju1TLJeLTbazxbdJRGB7vpJiBLIiJBE1rmdOy/XqugqMgs1B7M/JeOVlxp4LzTT5BBLQOePpAdLPUSM/vf2i0se1/UBrp2d6BKDYK65BZLVT09RcrrR0kVU4MpnSzNb47iNgMHm4676G+y9UOU41LY5r7HfrY61QOc2as+lM8GNzTpzXP3ppB7EHuD2U0oaqntHO1or8jmjgoq7EoKOx1U7g2FtSJC+oha49hK9nhO15uaw63orlyxXWg5Ngl/8emqMWt2QzG8VERDoIKnwHMgllI7aZIQC49muI2RpBSrbk+O3IVZob1QTmiYH1QbO3cDSCQ543toIBIJ0DorzZclsF6mdDabxQ10jYmzFkEzXO8N2+l+h5sOjp3kddipz7RMtHeuM7tBZZoK+aCW3zXaOkaJ5TQNqWvkDmtO3t6BKej9YdYAOyvZNDYckvdrvlRyLbrgyltdb4bbbHG0vo5omiVznNe4hjemNwOgOprf2IKBbMoxy51E9Pbr3b6uWni8aVkU7XFsey3r8/s7aR1eWwV7LFkdhvss8VmvFFXyU7GPlZBMHljH76HED9V3S7R8jo63pRW1uqG2C48c5HldjveHT4dUGPJaCEQTUFIAyJgn050Z6mPLmuHT1eC/3To6zTiu65OzKLljF+uNlyKGit9NNT3y3U5hdI1znhsM7Q5zfE00vHSQNO3ob7hSkREBERAREQEREBERBiGf53R4jNS09XjmUXcVTHkG0WiWsawAgaeWD3Sd9gfPusYHNNla1jBx7ySGs+wBidRpv7O3ZVbQ9E0PQIJNU8yWCpDBU8c8jTdDupviYjUO6T6jbexSXmSwywvhl455GfHIdvY7EagtcfmOnuqzoegTQ9Agkz+ZLC+m+jP455HdBrp8I4jUFuvTXTpcZ+YsenZGyfjfkWVsZ2xr8QqHBv7Nt7Kt6HoE0PQIJPVcy2GqhMNVx1yPPEfNkmI1Dmn9xC5M5pssZJZx7yS0kAHWJ1I7Dy+Cq2h6BND0CCVO5qsznte7j7koubvpJxOp2N+nZeqXmPH5aiOol445Gkmi/k5HYjUFzP2Hp2FWtD0CaHoEEqPNdnLw88fclFw7B31Tqdj/UvJ5ttJ88B5M/ClT+Sqmh6BND0CCSUfMGO0YeKPjbkSnEh6niLEKhnUfU6b3Xk8xY+ah9QeN+RTM9vQ6T6oVHU5voT07I+SrWh6BND0CCT1HMtiqIDBPx1yPLEexY/EqhzT+4heWc0WRkAgZx5yS2IN6QwYlUBoHprXkqvoegTQ9Agk1JzJYaSEQ0vHPI9PEDsMixGoa3f7A1eKbmPH6bxPo/HHI0PiHqf4eI1Deo+p03uVWtD0CaHoEElp+Y8fp43x0/HHI0THkl7WYjUNDifMkBvdZRxvmVsyZ1XSWzFsjsUdKGvIullkoWSdRP2OoAOPbvr1CzLQ9AmggIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIgIiICIiAiIg//Z';
+document.getElementById('logo-img').src = LOGO_PNG;
+document.getElementById('pdf-logo').src = LOGO_PNG;
+
+// ── GOOGLE FORM ──
+const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSf1bzD_ynigqfMm74G1wiWflJzR8culAGdh2BPC3xTyB3_WTw/formResponse';
+const F = {
+  name:   'entry.1512854563',
+  batch:  'entry.7980842',
+  pin:    'entry.1122488814',
+  day:    'entry.884991737',
+  date:   'entry.1743516057',
+  vocab:  'entry.348906054',
+  rc:     'entry.1425011088',
+  quant:  'entry.426079662',
+  dilr:   'entry.1038539507',
+  mental: 'entry.1409546835',
+  aeon:   'entry.1533989647',
+};
+
+// ── DAILY DATA (10 days) ──
+const DAYS = [
+  { vocab: [
+      {w:'Laconic',pos:'adj',m:'Using very few words; brief and concise.',eg:'His laconic reply — "No." — ended the discussion.'},
+      {w:'Perfidious',pos:'adj',m:'Deceitful and untrustworthy; guilty of betrayal.',eg:'The perfidious advisor sold secrets to the enemy.'},
+      {w:'Loquacious',pos:'adj',m:'Tending to talk a great deal; talkative.',eg:'She was loquacious at parties but silent in class.'},
+      {w:'Mendacious',pos:'adj',m:'Not telling the truth; lying.',eg:'His mendacious claims were quickly exposed.'},
+      {w:'Obsequious',pos:'adj',m:'Excessively compliant or fawning.',eg:'The obsequious clerk agreed with everything the boss said.'},
+      {w:'Ephemeral',pos:'adj',m:'Lasting for a very short time.',eg:'Fame can be ephemeral for reality TV contestants.'},
+      {w:'Perspicacious',pos:'adj',m:'Having a ready insight; shrewd.',eg:'A perspicacious reader noticed the author\'s bias immediately.'},
+      {w:'Recalcitrant',pos:'adj',m:'Having an obstinately uncooperative attitude.',eg:'The recalcitrant student refused every attempt at guidance.'},
+      {w:'Sycophant',pos:'noun',m:'A person who acts obsequiously to gain advantage.',eg:'The boardroom was full of sycophants who never disagreed.'},
+      {w:'Vacuous',pos:'adj',m:'Having or showing a lack of thought or intelligence.',eg:'Her vacuous comments added nothing to the debate.'},
+      {w:'Equivocate',pos:'verb',m:'Use ambiguous language to conceal truth or avoid commitment.',eg:'The politician equivocated when asked about the scandal.'},
+      {w:'Intransigent',pos:'adj',m:'Unwilling to change one\'s views; stubbornly obstinate.',eg:'The intransigent negotiator refused every compromise.'},
+      {w:'Querulous',pos:'adj',m:'Complaining in a petulant or whining manner.',eg:'The querulous patient complained about every minor inconvenience.'},
+      {w:'Meretricious',pos:'adj',m:'Apparently attractive but having no real value or integrity.',eg:'The meretricious advertisement promised miraculous weight loss.'},
+      {w:'Tendentious',pos:'adj',m:'Promoting a particular cause; biased.',eg:'The documentary was criticised for its tendentious framing.'},
+    ],
+    aeon:{title:'Why We Sleep',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/what-is-sleep-and-why-do-we-spend-a-third-of-our-lives-doing-it'},
+  },
+  { vocab: [
+      {w:'Iconoclast',pos:'noun',m:'A person who attacks cherished beliefs or institutions.',eg:'Galileo was an iconoclast who challenged the Church\'s cosmology.'},
+      {w:'Dilettante',pos:'noun',m:'A person who cultivates an area of interest superficially.',eg:'He was a dilettante in philosophy, knowing just enough to seem educated.'},
+      {w:'Inveterate',pos:'adj',m:'Having a long-established habit or interest.',eg:'He was an inveterate traveller who had visited 80 countries.'},
+      {w:'Truculent',pos:'adj',m:'Eager or quick to argue or fight; aggressively defiant.',eg:'The truculent defendant argued with his own lawyer.'},
+      {w:'Diffident',pos:'adj',m:'Modest or shy due to a lack of self-confidence.',eg:'The diffident student rarely raised her hand despite knowing the answer.'},
+      {w:'Gainsay',pos:'verb',m:'Deny or contradict; speak against or oppose.',eg:'Nobody could gainsay his expertise in the field.'},
+      {w:'Pugnacious',pos:'adj',m:'Eager or quick to quarrel or fight.',eg:'His pugnacious nature made collaborative work nearly impossible.'},
+      {w:'Anathema',pos:'noun',m:'Something or someone greatly detested or loathed.',eg:'Compromise was anathema to him — he fought every battle to the end.'},
+      {w:'Enervate',pos:'verb',m:'Make someone feel drained of energy; weaken.',eg:'The summer heat enervated the entire workforce.'},
+      {w:'Hubris',pos:'noun',m:'Excessive pride or self-confidence, often causing downfall.',eg:'His hubris in underestimating the competition cost him the match.'},
+      {w:'Impugn',pos:'verb',m:'Dispute the truth, validity, or honesty of.',eg:'The lawyer tried to impugn the witness\'s credibility.'},
+      {w:'Pernicious',pos:'adj',m:'Having a harmful effect, especially in a gradual or subtle way.',eg:'Social media\'s pernicious effect on self-image is well documented.'},
+      {w:'Zeitgeist',pos:'noun',m:'The defining spirit or mood of a particular period.',eg:'The startup culture perfectly captured the zeitgeist of the 2010s.'},
+      {w:'Cupidity',pos:'noun',m:'Greed for money or possessions.',eg:'His cupidity led him to embezzle from his own company.'},
+      {w:'Ineluctable',pos:'adj',m:'Unable to be resisted or avoided; inescapable.',eg:'The ineluctable march of time changes everything.'},
+    ],
+    aeon:{title:'The Paradox of Choice',meta:'Aeon · ~8 min read',url:'https://aeon.co/essays/is-having-too-many-options-actually-making-us-miserable'},
+  },
+  { vocab: [
+      {w:'Abase',pos:'verb',m:'To lower in rank or reputation; humiliate or degrade.',eg:'The bully constantly tried to abase his classmates to feel superior.'},
+      {w:'Abstemious',pos:'adj',m:'Marked by restraint, especially in food and drink.',eg:'She was known for her abstemious lifestyle, always opting for a salad.'},
+      {w:'Adroit',pos:'adj',m:'Having or showing skill, cleverness or resourcefulness.',eg:'The adroit thief picked the lock and stole the diamond within minutes.'},
+      {w:'Assuage',pos:'verb',m:'To relieve, ease, or make less severe.',eg:'She tried to assuage her guilt by donating to the charity.'},
+      {w:'Baleful',pos:'adj',m:'Harmful, malign, deadly or pernicious in influence.',eg:'The storm clouds had a baleful appearance, indicating severe weather ahead.'},
+      {w:'Caprice',pos:'noun',m:'A sudden and unpredictable change of behaviour without good reason.',eg:'His decision to quit was seen as a caprice — sudden and ill-considered.'},
+      {w:'Censure',pos:'verb',m:'To criticise or disapprove of formally.',eg:'The company received a censure from the government for safety violations.'},
+      {w:'Cogent',pos:'adj',m:'Convincing, clear, and well-reasoned.',eg:'The lawyer\'s cogent argument led to a favourable outcome.'},
+      {w:'Consternation',pos:'noun',m:'Amazement or dismay that throws one into confusion.',eg:'The bankruptcy news caused consternation among uncertain employees.'},
+      {w:'Dauntless',pos:'adj',m:'Fearless; not discouraged.',eg:'The firefighters were dauntless in fighting the raging inferno.'},
+      {w:'Decry',pos:'verb',m:'To denounce or condemn openly.',eg:'The activists decried the government\'s decision to cut education funding.'},
+      {w:'Desultory',pos:'adj',m:'Lacking a plan or purpose; done in a haphazard way.',eg:'His desultory job search led him to apply for unrelated positions.'},
+      {w:'Ebullience',pos:'noun',m:'The state of being full of enthusiasm and high spirits.',eg:'Robbie Williams is known for his ebullience on stage.'},
+      {w:'Encomium',pos:'noun',m:'A formal expression of high praise.',eg:'The finest encomium was passed on him by the queen herself.'},
+      {w:'Fulminate',pos:'verb',m:'To express strong and angry criticism; to explode violently.',eg:'He has been fulminating against the world and archaeology in particular.'},
+    ],
+    aeon:{title:'Against Productivity',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/against-productivity-why-busywork-makes-us-feel-safe'},
+  },
+  { vocab: [
+      {w:'Garrulous',pos:'adj',m:'Excessively talkative, especially on trivial matters.',eg:'The garrulous taxi driver narrated his entire life story.'},
+      {w:'Imperturbable',pos:'adj',m:'Unable to be upset or excited; unshakeably calm.',eg:'Lane\'s surgical skill exhibited imperturbable calm during the operation.'},
+      {w:'Inchoate',pos:'adj',m:'Not fully developed; rudimentary.',eg:'The project was still inchoate, with many ideas yet to be fleshed out.'},
+      {w:'Labyrinth',pos:'noun',m:'A maze; something extremely complex or tortuous in structure.',eg:'The city was a labyrinth of winding streets, easy to get lost in.'},
+      {w:'Morose',pos:'adj',m:'Sullen and ill-tempered.',eg:'The insult left him morose, discontented, and bitter.'},
+      {w:'Obdurate',pos:'adj',m:'Stubbornly refusing to change one\'s opinion.',eg:'Even then, King William remained obdurate and refused to sign.'},
+      {w:'Ostracise',pos:'verb',m:'To exclude or shun from a community or group.',eg:'The group ostracised the new member for not following their rules.'},
+      {w:'Pensive',pos:'adj',m:'Engaged in or reflecting deep or serious thought.',eg:'He assumed a look of pensive tenderness as he studied the portrait.'},
+      {w:'Petulant',pos:'adj',m:'Childishly sulky or bad-tempered.',eg:'It is better to act like an adult than a petulant child in disputes.'},
+      {w:'Prevaricate',pos:'verb',m:'To speak or act in an evasive way; dodge the truth.',eg:'Government officials prevaricated about the real costs of the project.'},
+      {w:'Quiescent',pos:'adj',m:'Inactive, at rest; in a state of latency.',eg:'The volcano remained quiescent for decades before erupting suddenly.'},
+      {w:'Sardonic',pos:'adj',m:'Grimly mocking or cynical.',eg:'The comedian\'s sardonic wit had the audience in stitches.'},
+      {w:'Specious',pos:'adj',m:'Superficially plausible but actually wrong.',eg:'He used specious arguments that eventually fell apart under scrutiny.'},
+      {w:'Ubiquitous',pos:'adj',m:'Present, appearing, or found everywhere.',eg:'Mobile phones have become ubiquitous in modern life.'},
+      {w:'Venerable',pos:'adj',m:'Deserving high respect due to age, wisdom, or character.',eg:'There has been a noticeable decline in venerable British institutions.'},
+    ],
+    aeon:{title:'The Limits of Empathy',meta:'Aeon · ~11 min read',url:'https://aeon.co/essays/against-empathy-its-not-the-source-of-good-morality'},
+  },
+  { vocab: [
+      {w:'Acrimony',pos:'noun',m:'Bitterness or ill feeling in speech or manner.',eg:'The acrimony between the rivals was palpable as they exchanged cutting words.'},
+      {w:'Anomaly',pos:'noun',m:'Something that deviates from what is standard or normal.',eg:'The patient\'s unusual symptoms were a medical anomaly that stumped the team.'},
+      {w:'Avarice',pos:'noun',m:'Greed; extreme desire for wealth.',eg:'Colonial officials often exploited India\'s resources with avarice.'},
+      {w:'Bellicose',pos:'adj',m:'Quarrelsome or warlike; inclined to start fights.',eg:'Agent Smith\'s bellicose nature was evident as he ruthlessly pursued Neo.'},
+      {w:'Calumny',pos:'noun',m:'Making false and defamatory statements about someone.',eg:'In Hollywood, calumny can spread like wildfire, tarnishing a celebrity\'s reputation.'},
+      {w:'Chicanery',pos:'noun',m:'The use of deception or trickery to achieve one\'s purpose.',eg:'The heist film involved elaborate chicaneries to outsmart casino security.'},
+      {w:'Contrite',pos:'adj',m:'Feeling or expressing remorse; sincerely penitent.',eg:'As chaos ensued, Bruce became increasingly contrite about misusing his powers.'},
+      {w:'Didactic',pos:'adj',m:'Intended to teach; instructive, sometimes in a preachy way.',eg:'The professor\'s didactic lectures ensured students understood practical applications.'},
+      {w:'Disdain',pos:'noun',m:'The feeling that someone or something is unworthy of respect.',eg:'Loki looked down upon mortal beings with a smirk of disdain.'},
+      {w:'Enigmatic',pos:'adj',m:'Difficult to interpret or understand; mysterious.',eg:'Mystique in X-Men is known for her enigmatic nature and shifting allegiances.'},
+      {w:'Fatuous',pos:'adj',m:'Silly and pointless; showing a lack of intelligence.',eg:'Mr. Bean\'s fatuous antics often lead to hilarious mishaps.'},
+      {w:'Germane',pos:'adj',m:'Relevant and appropriate to the matter in hand.',eg:'The senator brought up a point germane to the current political debate.'},
+      {w:'Gregarious',pos:'adj',m:'Fond of company or groups; sociable.',eg:'Bruce Wayne demonstrated a surprisingly gregarious side at lavish parties.'},
+      {w:'Immutable',pos:'adj',m:'Unchanging over time or unable to be changed.',eg:'Miranda Priestly\'s immutable demands created a culture of relentless perfection.'},
+      {w:'Probity',pos:'noun',m:'The quality of having strong moral principles; complete honesty.',eg:'Harvey Specter upheld a sense of probity even in murky corporate law.'},
+    ],
+    aeon:{title:'The Art of Doing Nothing',meta:'Aeon · ~7 min read',url:'https://aeon.co/essays/the-surprising-benefits-of-boredom-and-doing-nothing'},
+  },
+  { vocab: [
+      {w:'Assiduous',pos:'adj',m:'Showing great care and perseverance.',eg:'The assiduous student studied every night to ensure thorough understanding.'},
+      {w:'Apocryphal',pos:'adj',m:'Of doubtful authenticity, although widely circulated as true.',eg:'The haunted mansion story was widely regarded as apocryphal.'},
+      {w:'Burlesque',pos:'noun',m:'A literary or dramatic work that ridicules its subject.',eg:'Kapil Sharma\'s comedy incorporates elements of burlesque with exaggerated humour.'},
+      {w:'Conundrum',pos:'noun',m:'A confusing and difficult problem or question; a riddle.',eg:'The election posed a conundrum — party loyalty or individual merit?'},
+      {w:'Dissemble',pos:'verb',m:'To conceal one\'s true motives, feelings, or beliefs; to pretend.',eg:'The cunning antagonist would dissemble his true intentions behind charm.'},
+      {w:'Elusive',pos:'adj',m:'Difficult to find, catch, or achieve.',eg:'Veerappan remained an elusive figure for law enforcement for years.'},
+      {w:'Fallible',pos:'adj',m:'Capable of making mistakes or being wrong.',eg:'The eyewitness testimony was considered fallible, as memory can be distorted.'},
+      {w:'Flamboyant',pos:'adj',m:'Tending to attract attention through exuberance; very showy.',eg:'The socialite\'s flamboyant lifestyle was the subject of much fascination.'},
+      {w:'Fortitude',pos:'noun',m:'Courage in pain or adversity; mental and emotional strength.',eg:'Fortitude is key for success — it allows you to persevere through setbacks.'},
+      {w:'Gauche',pos:'adj',m:'Lacking social grace; awkward or unsophisticated.',eg:'His gauche attempt at small talk left the room in uncomfortable silence.'},
+      {w:'Haggard',pos:'adj',m:'Looking exhausted and unwell, especially from fatigue or worry.',eg:'The haggard expression on the athlete\'s face revealed how much effort he had put in.'},
+      {w:'Impervious',pos:'adj',m:'Unable to be affected or damaged; impenetrable.',eg:'Despite heavy rain, the new roof was impervious to leaks.'},
+      {w:'Indomitable',pos:'adj',m:'Not easily discouraged; impossible to subdue or defeat.',eg:'The athlete\'s indomitable spirit allowed her to persevere and win the championship.'},
+      {w:'Parochial',pos:'adj',m:'Having a limited or narrow outlook; insular.',eg:'The politician\'s parochial views failed to resonate with the diverse electorate.'},
+      {w:'Repugnant',pos:'adj',m:'Extremely distasteful; unacceptable; causing disgust.',eg:'The corrupt politician\'s actions were universally condemned as repugnant.'},
+    ],
+    aeon:{title:'How Minds Change',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-is-it-so-hard-to-change-your-mind-even-when-youre-wrong'},
+  },
+  { vocab: [
+      {w:'Intransigent',pos:'adj',m:'Unwilling to change one\'s views or to agree; uncompromising.',eg:'Allen Shore stood intransigent, fiercely defending his clients with unyielding determination.'},
+      {w:'Jeopardy',pos:'noun',m:'Danger of loss, harm, or failure; peril.',eg:'Ignoring safety regulations put the workers\' lives in jeopardy.'},
+      {w:'Knave',pos:'noun',m:'A dishonest or unscrupulous man.',eg:'Caesar recognised Cassius as a cunning knave disguising treachery behind loyalty.'},
+      {w:'Lethargic',pos:'adj',m:'Affected by lethargy; sluggish and apathetic.',eg:'After a heavy meal, John felt lethargic and unmotivated to do anything.'},
+      {w:'Livid',pos:'adj',m:'Furiously angry; of a dark purplish-blue colour.',eg:'The Hulk\'s livid roar shook the city as he unleashed his fury.'},
+      {w:'Malediction',pos:'noun',m:'A curse; the utterance of a curse.',eg:'The old woman put a malediction on her neighbour\'s house after their disputes.'},
+      {w:'Maudlin',pos:'adj',m:'Foolishly sentimental, often through drink.',eg:'After a few drinks, he became maudlin and talked about his failed relationships.'},
+      {w:'Mitigate',pos:'verb',m:'Make (something bad) less severe, serious, or painful.',eg:'The company implemented measures to mitigate the pandemic\'s impact on employees.'},
+      {w:'Myriad',pos:'adj',m:'Countless or extremely great in number.',eg:'Game of Thrones featured a myriad of characters with complex ambitions.'},
+      {w:'Nascent',pos:'adj',m:'Just coming into existence and beginning to display signs of future potential.',eg:'The startup was still in its nascent stage but had already attracted investor interest.'},
+      {w:'Noisome',pos:'adj',m:'Having an extremely offensive smell; harmful to health.',eg:'The garbage dump emitted a noisome odour that permeated the air.'},
+      {w:'Aberrant',pos:'adj',m:'Departing from an accepted standard; abnormal.',eg:'Ross had an aberrant outburst of anger when someone ate his Thanksgiving leftovers.'},
+      {w:'Disingenuous',pos:'adj',m:'Not candid or sincere; not straightforward.',eg:'Barney\'s disingenuous compliments could not fool his close friends from HIMYM.'},
+      {w:'Dogmatic',pos:'adj',m:'Inclined to lay down principles as undeniably true.',eg:'North Korea\'s dogmatic adherence to its ideology has led to persistent isolation.'},
+      {w:'Effrontery',pos:'noun',m:'Insolent or impertinent behaviour; arrogant boldness.',eg:'Dr. House confronted the hospital administration with unapologetic effrontery.'},
+    ],
+    aeon:{title:'The Distracted Mind',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/why-the-phone-is-so-hard-to-put-down-even-when-you-want-to'},
+  },
+  { vocab: [
+      {w:'Forbearance',pos:'noun',m:'Patient self-control; restraint and tolerance.',eg:'Reddington exhibited remarkable forbearance, biding his time for the perfect opportunity.'},
+      {w:'Inundate',pos:'verb',m:'Overwhelm with things or people to be dealt with; flood.',eg:'The detectives found themselves inundated with investigations across the city.'},
+      {w:'Malleable',pos:'adj',m:'Easily influenced; able to be shaped or changed.',eg:'Jim could be surprisingly malleable when it came to adapting to new office dynamics.'},
+      {w:'Neophyte',pos:'noun',m:'A person who is new to a subject, skill, or belief.',eg:'As a neophyte intern, Meredith struggled to navigate the demanding world of surgery.'},
+      {w:'Obtrude',pos:'verb',m:'Impose or force (oneself or one\'s ideas) on others.',eg:'The salesman\'s attempts to obtrude his products were met with annoyance.'},
+      {w:'Bucolic',pos:'adj',m:'Relating to or typical of rural life; charmingly rural.',eg:'Dwight yearned for a bucolic existence, dreaming of a tranquil beet farm.'},
+      {w:'Esoteric',pos:'adj',m:'Intended for or understood by only a small number with specialised knowledge.',eg:'Sheldon delighted in sharing his esoteric knowledge of quantum physics.'},
+      {w:'Soubriquet',pos:'noun',m:'A nickname; an alternate name used instead of the real name.',eg:'The character introduced himself by his soubriquet rather than his real name.'},
+      {w:'Vicissitude',pos:'noun',m:'A change of circumstances, especially one that is difficult or unpleasant.',eg:'The vicissitudes of fate cast him as both victim and villain.'},
+      {w:'Venal',pos:'adj',m:'Susceptible to bribery; showing or motivated by susceptibility to corruption.',eg:'He vowed to vanquish the venal and virulent vermin guarding vice.'},
+      {w:'Veracity',pos:'noun',m:'Conformity to facts; accuracy; truthfulness.',eg:'The value and veracity of such actions shall one day vindicate the virtuous.'},
+      {w:'Vindicate',pos:'verb',m:'Clear from blame or suspicion; show to be right or justified.',eg:'Time would vindicate those who stood firm against popular opinion.'},
+      {w:'Vigilant',pos:'adj',m:'Keeping careful watch for possible danger or difficulties.',eg:'The only verdict is vengeance for the vigilant and virtuous.'},
+      {w:'Vivified',pos:'verb',m:'Made more lively, intense, or striking; animated.',eg:'His speech was vivified by passion and the weight of personal conviction.'},
+      {w:'Volition',pos:'noun',m:'The faculty or power of using one\'s will; free choice.',eg:'He acted entirely of his own volition, without any external pressure.'},
+    ],
+    aeon:{title:'The Examined Life',meta:'Aeon · ~8 min read',url:'https://aeon.co/essays/how-socratic-questioning-can-help-us-think-more-clearly'},
+  },
+  { vocab: [
+      {w:'Sagacious',pos:'adj',m:'Having or showing keen mental discernment and good judgement; wise.',eg:'The CEO was known for his sagacious decision-making, always weighing pros and cons.'},
+      {w:'Misanthrope',pos:'noun',m:'A person who dislikes and distrusts other people generally.',eg:'A drunkard and misanthrope, he nevertheless vowed to defend the earth from invaders.'},
+      {w:'Narcissism',pos:'noun',m:'Excessive interest in or admiration of oneself.',eg:'His narcissism made it difficult to form real connections with others.'},
+      {w:'Ominous',pos:'adj',m:'Giving the impression that something bad is about to happen.',eg:'The door closed with an ominous boom that echoed through the empty chamber.'},
+      {w:'Pedagogue',pos:'noun',m:'A teacher; one who is dogmatic and pedantic in teaching.',eg:'The sophist was treated by the man of the world as a harmless, necessary pedagogue.'},
+      {w:'Portend',pos:'verb',m:'Be a sign or warning that something, usually bad, will happen.',eg:'I hope my terrible grades do not portend my later success in life.'},
+      {w:'Propensity',pos:'noun',m:'An inclination or natural tendency to behave in a particular way.',eg:'Technology has not decreased human propensity to wage war; it just made it deadlier.'},
+      {w:'Quaff',pos:'verb',m:'Drink (something, especially alcohol) heartily.',eg:'At the end, all five of them quaffed the remaining elixir, binding themselves together.'},
+      {w:'Rabid',pos:'adj',m:'Having or proceeding from an extreme or fanatical support of something.',eg:'I worry about the rabid consumerism that pervades many inner-city areas.'},
+      {w:'Remonstrate',pos:'verb',m:'Make a forcefully reproachful protest; argue in opposition.',eg:'The most that Parliament could do was remonstrate to the States-General.'},
+      {w:'Reproof',pos:'noun',m:'An expression of blame or disapproval; a rebuke.',eg:'A holy life speaks when the tongue is silent — it is a perpetual reproof.'},
+      {w:'Ruminate',pos:'verb',m:'Think deeply about something; ponder.',eg:'After the meeting, John couldn\'t stop ruminating on all he wished he had said.'},
+      {w:'Solace',pos:'noun',m:'Comfort or consolation in a time of distress or sadness.',eg:'My only solace was that I would soon be reunited with the person I loved.'},
+      {w:'Subjugate',pos:'verb',m:'Bring under domination or control, especially by conquest.',eg:'Henry asked for permission to invade and subjugate Ireland.'},
+      {w:'Turbid',pos:'adj',m:'(Of a liquid) cloudy, opaque, or thick with suspended matter.',eg:'The river water was so turbid it was impossible to see more than a few inches below.'},
+    ],
+    aeon:{title:'Why We Remember What We Remember',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-emotionally-significant-events-are-so-well-remembered'},
+  },
+  { vocab: [
+      {w:'Specious',pos:'adj',m:'Superficially plausible but actually wrong; misleadingly attractive.',eg:'He used specious arguments that eventually fell apart under scrutiny.'},
+      {w:'Suppliant',pos:'adj',m:'Making a humble or earnest plea; entreating.',eg:'The emperor was a suppliant in the British camp after the decisive battle.'},
+      {w:'Tenuous',pos:'adj',m:'Very weak or slight; thin and insubstantial.',eg:'Everyone is jumping on the World Cup bandwagon, however tenuous their product link.'},
+      {w:'Transpire',pos:'verb',m:'Come to be known; occur or happen.',eg:'It became clear that the event would not transpire as planned due to bad weather.'},
+      {w:'Unobtrusive',pos:'adj',m:'Not conspicuous or attracting attention; discreet.',eg:'Staff offer efficient, unobtrusive service at the restaurant overlooking the harbour.'},
+      {w:'Viable',pos:'adj',m:'Capable of working successfully; feasible.',eg:'Engineers are still trying to develop a commercially viable engine replacement.'},
+      {w:'Virtuoso',pos:'noun',m:'A person highly skilled in music or another artistic pursuit.',eg:'He is a pianist of extraordinary capability, a virtuoso technique second to none.'},
+      {w:'Voluble',pos:'adj',m:'Talking fluently, readily, or incessantly.',eg:'He has been voluble to the point of suffocation, then quiet as the Jordan.'},
+      {w:'Waft',pos:'verb',m:'Pass or cause to pass gently through the air.',eg:'A waft of fragrance made her stop just as she was about to fall over.'},
+      {w:'Whimsical',pos:'adj',m:'Playfully quaint or fanciful; acting on impulse.',eg:'The whimsical garden with unusual sculptures was a favourite spot for visitors.'},
+      {w:'Wrest',pos:'verb',m:'Forcibly pull or take away from a person\'s grasp.',eg:'He had to wrest control of the company from his rivals.'},
+      {w:'Abdicate',pos:'verb',m:'Fail to fulfil or undertake a responsibility or duty; renounce.',eg:'Prince Milosh was forced to abdicate and leave the country in 1839.'},
+      {w:'Ameliorate',pos:'verb',m:'Make (something bad or unsatisfactory) better.',eg:'A centralised policy would compound, not ameliorate, the problem.'},
+      {w:'Broach',pos:'verb',m:'Raise (a difficult subject) for discussion.',eg:'I didn\'t want to upset her, but I had to broach the subject of her constant lateness.'},
+      {w:'Cacophony',pos:'noun',m:'A harsh, discordant mixture of sounds.',eg:'The orchestra\'s performance started as a cacophony before finding its rhythm.'},
+    ],
+    aeon:{title:'The Shape of a Life',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/what-makes-a-life-well-lived-is-it-more-than-just-happiness'},
+  },
+];
+
+const TODO_ITEMS = [
+  {id:'rc',    text:'RC Practice',    sub:'3–4 passages from today\'s material'},
+  {id:'quant', text:'Quant',          sub:'30 questions — Module / BMT'},
+  {id:'dilr',  text:'DILR',           sub:'3–4 sets'},
+  {id:'mental',text:'Mental Math',    sub:'15 calculations'},
+  {id:'aeon',  text:'Aeon Article',   sub:'Read and note one idea'},
+  {id:'vocab', text:'Vocab Revision', sub:'Revisit yesterday\'s 15 words'},
+];
+
+// ── STUDENTS ──
+const STUDENTS = {
+  '2604': [
+    {name:'AERIK Patel',pin:'IMS0001152690'},{name:'Aarya Shah',pin:'IMS0001156319'},{name:'Annushri Shah',pin:'IMS0001153920'},{name:'Aryan Ghinaiya',pin:'IMS0001126836'},{name:'Daksh Bhansali',pin:'IMS0001152273'},{name:'Dev Khatva',pin:'IMS0001147753'},{name:'Dev Shah',pin:'IMS0001147567'},{name:'Dev Tejani',pin:'IMS0001156135'},{name:'Devanshi Vagashiya',pin:'IMS0001145494'},{name:'Dhyan Patel',pin:'IMS0001153919'},{name:'Drashti Parmar',pin:'IMS0001150745'},{name:'Gopi Chodvadiya',pin:'IMS0001145495'},{name:'Hetvi Doshi',pin:'IMS0001143755'},{name:'Jayani Bhatt',pin:'IMS0001154434'},{name:'Jethi Ahuja',pin:'IMS0001152076'},{name:'Krish Patel',pin:'IMS0001152688'},{name:'Krish Tejani',pin:'IMS0001155192'},{name:'Krisha Vagasiya',pin:'IMS0001147448'},{name:'Kritika Punjabi',pin:'IMS0001148610'},{name:'Mayank Karangiya',pin:'IMS0001146568'},{name:'Meet Shah',pin:'IMS0001155001'},{name:'Nand Patel',pin:'IMS0001151335'},{name:'Nihalpuri Goswami',pin:'IMS0001140417'},{name:'Nishit Lukkad',pin:'IMS0001151675'},{name:'Piyush Vanjani',pin:'IMS0001144949'},{name:'Pradyumn Dadhania',pin:'IMS0001144584'},{name:'Prem Dhanwani',pin:'IMS0001144950'},{name:'Srashti Panwar',pin:'IMS0001127131'},{name:'Tanisha Parmar',pin:'IMS0001153362'},{name:'VATSAL JAIN',pin:'IMS0001152275'},{name:'Vinit Godhani',pin:'IMS0001147974'},
+  ],
+  '2636': [
+    {name:'Aashni Bhatt',pin:'STU0001254221'},{name:'Abhinav Kumar',pin:'STU0001256898'},{name:'Amoli Patel',pin:'IMS0001098173'},{name:'Aryan Mishra',pin:'STU0001252658'},{name:'Bhavya Diwan',pin:'STU0001253787'},{name:'Darsh Tibrewal',pin:'IMS0000982346'},{name:'Devang Patel',pin:'STU0001255384'},{name:'Dhanvi Patel',pin:'STU0001254212'},{name:'Dhaval Patel',pin:'STU0001240550'},{name:'Faizan Sherasiya',pin:'STU0001256886'},{name:'Harsha Madhad',pin:'IMS0001156653'},{name:'Jal Shah',pin:'STU0001252759'},{name:'KaustavJyoti Gogoi',pin:'STU0001255400'},{name:'Khadija Sadik',pin:'IMS0001043059'},{name:'Khooshi Sonkar',pin:'STU0001257321'},{name:'Krutarth Vyas',pin:'STU0001255188'},{name:'Manav Mehta',pin:'STU0001250691'},{name:'Mehul Gehlot',pin:'STU0001256414'},{name:'Naitik Khandelwal',pin:'STU0001251645'},{name:'Niket Joshi',pin:'STU0001180847'},{name:'Nisarg Thakkar',pin:'STU0001256834'},{name:'Oum Patidar',pin:'STU0001254286'},{name:'Prince Patel',pin:'IMS0001143518'},{name:'Priyanshi Soni',pin:'STU0001176939'},{name:'Rahul Yadav',pin:'STU0001252319'},{name:'Ritisha Gulati',pin:'STU0001255330'},{name:'Sanvi Mehta',pin:'STU0001256686'},{name:'Shagun Rawat',pin:'STU0001255634'},{name:'Sharanya Unnithan',pin:'STU0001253601'},{name:'Shashwat Jain',pin:'STU0001256707'},{name:'Shreni Mutta',pin:'IMS0001149985'},{name:'Shrey Jain',pin:'STU0001253220'},{name:'Shreya Patel',pin:'STU0001255370'},{name:'Srishti Saraf',pin:'STU0001255920'},{name:'Vani Banthia',pin:'STU0001256220'},{name:'Vedant Prajapati',pin:'IMS0001065318'},{name:'dhruv pipaliya',pin:'IMS0001124618'},
+  ],
+  '2641': [
+    {name:'Akshat Changela',pin:'IMS0000986808'},{name:'Anshul Gustin',pin:'STU0001184962'},{name:'Arnav Sharma',pin:'STU0001204912'},{name:'Bhakti Arora',pin:'STU0001260550'},{name:'Bhargav Navadiya',pin:'STU0001197903'},{name:'Bhoomi Arora',pin:'IMS0001157291'},{name:'Bhuvi Kejriwal',pin:'STU0001256932'},{name:'Dinil Shah',pin:'STU0001259818'},{name:'Dipanshi Panchal',pin:'STU0001183406'},{name:'Divyam Agarwal',pin:'STU0001257972'},{name:'Drishan Maheshwari',pin:'STU0001261629'},{name:'Haryush Nirmal',pin:'STU0001261312'},{name:'Heet Lakhani',pin:'STU0001238201'},{name:'Het Prajapati',pin:'STU0001261504'},{name:'Himanshu Kumar',pin:'STU0001261337'},{name:'Ishita Sharma',pin:'STU0001261652'},{name:'Jainil Desai',pin:'STU0001260196'},{name:'Jay Sapariya',pin:'STU0001254675'},{name:'Jeet Dave',pin:'STU0001260502'},{name:'Kareena Soni',pin:'STU0001261521'},{name:'Khushi Shah',pin:'STU0001261762'},{name:'Kshitij Bhavsar',pin:'IMS0001157433'},{name:'Kundan Mahibal',pin:'STU0001260844'},{name:'Kushagra Singhal',pin:'STU0001261257'},{name:'Manav Parikh',pin:'STU0001259650'},{name:'Meet Prajapati',pin:'STU0001260497'},{name:'Pankti Rupani',pin:'STU0001251999'},{name:'Rahul Nathwani',pin:'STU0001261786'},{name:'Riddhi Lalwani',pin:'IMS0000992154'},{name:'Saumil Agrawal',pin:'STU0001256727'},{name:'Shivam Gohil',pin:'IMS0000937356'},{name:'Shreyansh Chhajed',pin:'STU0001211485'},{name:'Siddhi Balwani',pin:'STU0001256988'},{name:'Stuti Chechani',pin:'STU0001223125'},{name:'Sujal Nikam',pin:'STU0001205432'},{name:'Tirth Jyotishi',pin:'STU0001261733'},{name:'Vansh Shah',pin:'STU0001258931'},{name:'Ved Bechara',pin:'STU0001260920'},{name:'Vihaan Gandhi',pin:'STU0001258919'},{name:'Vishwajit Dabhi',pin:'STU0001261364'},{name:'Vraj Padhiyar',pin:'STU0001262871'},{name:'Yash Patel',pin:'STU0001259535'},{name:'Yashvi Ashara',pin:'STU0001194091'},{name:'Yesha Gohil',pin:'STU0001234210'},
+  ],
+  '2642': [
+    {name:'Abhishek Yadav',pin:'STU0001172636'},{name:'Akshat Voriya',pin:'IMS0001151609'},{name:'Analpreetsing Bhatia',pin:'STU0001262799'},{name:'Arzav Jain',pin:'IMS0001077247'},{name:'Avi Raval',pin:'STU0001243060'},{name:'Bansari Patel',pin:'STU0001261888'},{name:'Bhoomi Sangtani',pin:'STU0001263496'},{name:'Christy Tomy',pin:'STU0001263143'},{name:'Darshan Lakhara',pin:'STU0001261402'},{name:'Deval Devda',pin:'STU0001262145'},{name:'Devesh Tansukhani',pin:'IMS0001110744'},{name:'Dhruv Pankhaniya',pin:'STU0001171695'},{name:'Dhwani Gajjar',pin:'STU0001262809'},{name:'Dhyey Patel',pin:'IMS0001129195'},{name:'Divya Patel',pin:'STU0001263775'},{name:'Gautam Tarani',pin:'IMS0001118342'},{name:'Gokul Ezhava',pin:'STU0001262972'},{name:'Harsh Joshi',pin:'STU0001263720'},{name:'Harsh Solanki',pin:'STU0001262834'},{name:'Harshita Verma',pin:'IMS0001106963'},{name:'Himani Priyamwada',pin:'STU0001252345'},{name:'Jay Talati',pin:'STU0001255137'},{name:'Karvi Anjaria',pin:'STU0001262657'},{name:'Khushi Sharma',pin:'STU0001188150'},{name:'Krish Rohira',pin:'IMS0001070170'},{name:'Krunal Unadkat',pin:'STU0001247660'},{name:'Krusha Sheth',pin:'STU0001252295'},{name:'Moxit Patel',pin:'STU0001263198'},{name:'Nirdhar Samdani',pin:'STU0001262132'},{name:'Nirupam Mehta',pin:'STU0001261887'},{name:'Om Modh',pin:'STU0001263406'},{name:'Parth Parmar',pin:'STU0001262664'},{name:'Prachi Gehlot',pin:'STU0001260609'},{name:'Prakhar Agarwal',pin:'STU0001262639'},{name:'Rahil Shah',pin:'STU0001264352'},{name:'Rahul Chaudhary',pin:'STU0001263949'},{name:'Sanidhya Mishra',pin:'IMS0001144887'},{name:'Sumit Kumar',pin:'STU0001260190'},{name:'Surya Kothari',pin:'STU0001239601'},{name:'Vedant Bhatt',pin:'STU0001261633'},{name:'Vrajrajsinh Sisodiya',pin:'STU0001202939'},
+  ],
+};
+
+// ── STATE ──
+let user = null;
+let todayIdx = 0;
+let todoState = {};
+
+// ── INIT ──
+window.onload = () => {
+  // Set logo
+  // (logo set inline below)
+  todayIdx = getDayIdx();
+};
+
+function getDayIdx() {
+  const LAUNCH_DATE = 'Tue Jun 17 2026'; // Day 1
+  // Always reset to launch date — overrides any old localStorage value
+  localStorage.setItem('ims_drill_start', LAUNCH_DATE);
+  const diff = Math.floor((new Date() - new Date(LAUNCH_DATE)) / 86400000);
+  return Math.min(Math.max(diff, 0), DAYS.length - 1);
+}
+
+// ── LOGIN ──
+function loadStudents() {
+  const batch = document.getElementById('batch-sel').value;
+  const sel = document.getElementById('name-sel');
+  sel.innerHTML = '<option value="">— Select Name —</option>';
+  document.getElementById('pin-group').style.display = 'none';
+  if (!batch || !STUDENTS[batch]) return;
+  STUDENTS[batch].sort((a,b) => a.name.localeCompare(b.name)).forEach(s => {
+    const o = document.createElement('option');
+    o.value = s.name; o.dataset.pin = s.pin; o.textContent = s.name;
+    sel.appendChild(o);
+  });
+  sel.onchange = () => {
+    const opt = sel.options[sel.selectedIndex];
+    if (opt.dataset.pin) {
+      document.getElementById('pin-disp').value = opt.dataset.pin;
+      document.getElementById('pin-group').style.display = 'block';
+    }
+  };
+}
+
+function doLogin() {
+  const batch = document.getElementById('batch-sel').value;
+  const name  = document.getElementById('name-sel').value;
+  const pin   = document.getElementById('pin-disp').value;
+  if (!batch || !name) { alert('Please select your batch and name.'); return; }
+  user = { batch, name, pin };
+  launch();
+}
+
+function doFacultyLogin() {
+  const pwd = prompt('Faculty password:');
+  if (pwd !== 'IMS@Faculty') { alert('Incorrect.'); return; }
+  user = { batch: 'FACULTY', name: 'Faculty Preview', pin: '000000' };
+  launch();
+}
+
+function launch() {
+  document.getElementById('topbar-user').textContent = user.name + ' · ' + user.batch;
+  document.getElementById('topbar-user').style.display = 'block';
+  buildMain();
+  showScreen('screen-main');
+}
+
+// ── MAIN ──
+function buildMain() {
+  const d = DAYS[todayIdx];
+  const dayNum = todayIdx + 1;
+  const dateStr = new Date().toLocaleDateString('en-IN', {weekday:'long', day:'numeric', month:'long'});
+
+  document.getElementById('day-heading').textContent = 'Day ' + dayNum;
+  document.getElementById('day-date').textContent = dateStr;
+  document.getElementById('pdf-day-label').textContent = 'Day ' + dayNum + ' — ' + dateStr;
+
+  // Vocab
+  const grid = document.getElementById('vocab-grid');
+  grid.innerHTML = '';
+  d.vocab.forEach(v => {
+    const card = document.createElement('div'); card.className = 'v-card';
+    card.innerHTML = `<div class="v-front"><div class="word">${v.w}</div><div class="pos">${v.pos}</div></div><div class="v-back"><div class="meaning">${v.m}</div><div class="eg">"${v.eg}"</div></div>`;
+    card.onclick = () => card.classList.toggle('flipped');
+    grid.appendChild(card);
+  });
+
+  // Aeon
+  document.getElementById('aeon-title-hdr').textContent = d.aeon.title;
+  document.getElementById('aeon-meta-hdr').textContent  = d.aeon.meta;
+  document.getElementById('aeon-title').textContent     = d.aeon.title;
+  document.getElementById('aeon-meta').textContent      = d.aeon.meta;
+  document.getElementById('aeon-link').href             = d.aeon.url;
+
+  // Todo
+  const list = document.getElementById('todo-list');
+  list.innerHTML = '';
+  TODO_ITEMS.forEach(item => {
+    const div = document.createElement('div'); div.className = 'todo-item'; div.id = 'ti-' + item.id;
+    div.innerHTML = `<div class="todo-cb" id="tcb-${item.id}"></div><div><div class="todo-text">${item.text}</div><div class="todo-sub">${item.sub}</div></div>`;
+    div.onclick = () => toggleTodo(item.id);
+    list.appendChild(div);
+  });
+}
+
+function toggleTodo(id) {
+  todoState[id] = !todoState[id];
+  const item = document.getElementById('ti-' + id);
+  const cb   = document.getElementById('tcb-' + id);
+  if (todoState[id]) { item.classList.add('done'); cb.textContent = '✓'; }
+  else { item.classList.remove('done'); cb.textContent = ''; }
+}
+
+function flipAll() {
+  const cards = document.querySelectorAll('.v-card');
+  const anyUnflipped = [...cards].some(c => !c.classList.contains('flipped'));
+  cards.forEach(c => anyUnflipped ? c.classList.add('flipped') : c.classList.remove('flipped'));
+  document.querySelector('.flip-all-btn').textContent = anyUnflipped ? 'Hide All' : 'Reveal All';
+}
+
+function toggleSec(id) { document.getElementById(id).classList.toggle('open'); }
+
+// ── SUBMIT ──
+function submitDay() {
+  const params = new URLSearchParams({
+    [F.name]:   user.name,
+    [F.batch]:  user.batch,
+    [F.pin]:    user.pin,
+    [F.day]:    todayIdx + 1,
+    [F.date]:   new Date().toLocaleDateString('en-IN'),
+    [F.vocab]:  todoState['vocab'] ? 'Yes' : 'No',
+    [F.rc]:     todoState['rc']    ? 'Yes' : 'No',
+    [F.quant]:  todoState['quant'] ? 'Yes' : 'No',
+    [F.dilr]:   todoState['dilr']  ? 'Yes' : 'No',
+    [F.mental]: todoState['mental']? 'Yes' : 'No',
+    [F.aeon]:   todoState['aeon']  ? 'Yes' : 'No',
+  });
+  try { fetch(FORM_URL, {method:'POST', mode:'no-cors', body:params}).catch(()=>{}); } catch(e){}
+  document.querySelector('.submit-btn').style.display = 'none';
+  document.getElementById('submitted-msg').style.display = 'block';
+}
+
+// ── PDF ──
+function printDay() {
+  // Reset all cards to front (word side) before printing
+  document.querySelectorAll('.v-card').forEach(c => c.classList.remove('flipped'));
+  document.getElementById('vocab-sec').classList.add('open');
+  document.getElementById('pdf-hdr').style.display = 'flex';
+  window.print();
+  setTimeout(() => { document.getElementById('pdf-hdr').style.display = 'none'; }, 1000);
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
