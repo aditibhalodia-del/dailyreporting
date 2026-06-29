@@ -61,7 +61,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
 .sec-hdr:hover { background: #FDFCFA; }
 .sec-badge { padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; flex-shrink: 0; }
 .badge-vocab { background: #EAE0FF; color: #5B2DB3; }
-.badge-cr    { background: #FFE8D0; color: #B85C00; }
 .badge-aeon  { background: var(--gold-light); color: #7A5500; }
 .badge-todo  { background: var(--green-bg); color: #1B5C38; }
 .sec-hdr-text { flex: 1; }
@@ -93,20 +92,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
 .aeon-card .a-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
 .aeon-card .a-meta  { font-size: 12px; color: var(--slate); margin-bottom: 12px; }
 .aeon-read-btn { display: inline-block; padding: 10px 20px; background: var(--gold); color: var(--navy); border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; text-decoration: none; }
-
-/* CR */
-.cr-q { border: 1.5px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
-.cr-q-num { font-size: 11px; font-weight: 700; color: #B85C00; letter-spacing: .5px; margin-bottom: 6px; }
-.cr-q-text { font-size: 13px; line-height: 1.6; color: #1a1a2e; margin-bottom: 12px; }
-.cr-opts { display: flex; flex-direction: column; gap: 7px; }
-.cr-opt { padding: 9px 13px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; cursor: pointer; background: var(--cream); text-align: left; transition: all .15s; }
-.cr-opt:hover { border-color: var(--navy); background: #EEF2FA; }
-.cr-opt.selected { border-color: var(--navy); background: #EEF2FA; }
-.cr-opt.correct { border-color: #2D7A4F; background: #EAF4EE; color: #2D7A4F; font-weight: 700; }
-.cr-opt.wrong { border-color: #C0392B; background: #FDECEA; color: #C0392B; }
-.cr-reveal { margin-top: 10px; padding: 7px 14px; background: none; border: 1.5px solid var(--gold); color: #7A5500; border-radius: 7px; font-size: 12px; font-weight: 700; cursor: pointer; }
-.cr-exp { margin-top: 10px; background: #FFFBF0; border: 1px solid var(--gold-light); border-radius: 8px; padding: 12px; font-size: 12px; color: var(--slate); display: none; line-height: 1.55; }
-.cr-exp strong { color: var(--navy); }
 
 /* TODO */
 .todo-list { padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
@@ -193,6 +178,18 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
   </div>
 </div>
 
+<!-- FACULTY DAY PICKER -->
+<div class="screen" id="screen-faculty">
+  <div style="max-width:480px;margin:40px auto;padding:0 20px;">
+    <div style="text-align:center;margin-bottom:28px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">Faculty Preview</div>
+      <h2 style="font-size:22px;font-weight:800;color:var(--navy);">Select a Day</h2>
+      <p style="font-size:13px;color:var(--slate);margin-top:4px;">Preview any day's content</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;" id="faculty-day-grid"></div>
+  </div>
+</div>
+
 <!-- MAIN -->
 <div class="screen" id="screen-main">
   <div class="main-wrap">
@@ -225,21 +222,6 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
         <div class="vocab-grid" id="vocab-grid"></div>
         <p class="vocab-hint">Tap any card · tap again to flip back</p>
         <button class="flip-all-btn" onclick="flipAll()">Reveal All</button>
-      </div>
-    </div>
-
-    <!-- CR -->
-    <div class="sec" id="cr-sec">
-      <div class="sec-hdr" onclick="toggleSec('cr-sec')">
-        <span class="sec-badge badge-cr">CR</span>
-        <div class="sec-hdr-text">
-          <h3>10 Critical Reasoning Questions</h3>
-          <p>Attempt each option first — then reveal</p>
-        </div>
-        <span class="sec-chevron">▾</span>
-      </div>
-      <div class="sec-body">
-        <div id="cr-list" style="padding-top:12px;"></div>
       </div>
     </div>
 
@@ -331,7 +313,7 @@ const DAYS = [
       {w:'Meretricious',pos:'adj',m:'Apparently attractive but having no real value or integrity.',eg:'The meretricious advertisement promised miraculous weight loss.'},
       {w:'Tendentious',pos:'adj',m:'Promoting a particular cause; biased.',eg:'The documentary was criticised for its tendentious framing.'},
     ],
-    aeon:{title:'Your brain is not a computer',meta:'Aeon · ~12 min read',url:'https://aeon.co/essays/your-brain-does-not-process-information-and-it-is-not-a-computer'},
+    aeon:{title:'Why We Sleep',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/what-is-sleep-and-why-do-we-spend-a-third-of-our-lives-doing-it'},
   },
   { vocab: [
       {w:'Iconoclast',pos:'noun',m:'A person who attacks cherished beliefs or institutions.',eg:'Galileo was an iconoclast who challenged the Church\'s cosmology.'},
@@ -350,7 +332,7 @@ const DAYS = [
       {w:'Cupidity',pos:'noun',m:'Greed for money or possessions.',eg:'His cupidity led him to embezzle from his own company.'},
       {w:'Ineluctable',pos:'adj',m:'Unable to be resisted or avoided; inescapable.',eg:'The ineluctable march of time changes everything.'},
     ],
-    aeon:{title:'Why English is so weird',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/why-is-english-so-weirdly-different-from-other-languages'},
+    aeon:{title:'The Paradox of Choice',meta:'Aeon · ~8 min read',url:'https://aeon.co/essays/is-having-too-many-options-actually-making-us-miserable'},
   },
   { vocab: [
       {w:'Abase',pos:'verb',m:'To lower in rank or reputation; humiliate or degrade.',eg:'The bully constantly tried to abase his classmates to feel superior.'},
@@ -369,7 +351,7 @@ const DAYS = [
       {w:'Encomium',pos:'noun',m:'A formal expression of high praise.',eg:'The finest encomium was passed on him by the queen herself.'},
       {w:'Fulminate',pos:'verb',m:'To express strong and angry criticism; to explode violently.',eg:'He has been fulminating against the world and archaeology in particular.'},
     ],
-    aeon:{title:'What if jobs are not the solution?',meta:'Aeon · ~11 min read',url:'https://aeon.co/essays/what-if-jobs-are-not-the-solution-but-the-problem'},
+    aeon:{title:'Against Productivity',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/against-productivity-why-busywork-makes-us-feel-safe'},
   },
   { vocab: [
       {w:'Garrulous',pos:'adj',m:'Excessively talkative, especially on trivial matters.',eg:'The garrulous taxi driver narrated his entire life story.'},
@@ -388,7 +370,7 @@ const DAYS = [
       {w:'Ubiquitous',pos:'adj',m:'Present, appearing, or found everywhere.',eg:'Mobile phones have become ubiquitous in modern life.'},
       {w:'Venerable',pos:'adj',m:'Deserving high respect due to age, wisdom, or character.',eg:'There has been a noticeable decline in venerable British institutions.'},
     ],
-    aeon:{title:'Why Stoicism is one of the best mind-hacks',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-stoicism-is-one-of-the-best-mind-hacks-ever-devised'},
+    aeon:{title:'The Limits of Empathy',meta:'Aeon · ~11 min read',url:'https://aeon.co/essays/against-empathy-its-not-the-source-of-good-morality'},
   },
   { vocab: [
       {w:'Acrimony',pos:'noun',m:'Bitterness or ill feeling in speech or manner.',eg:'The acrimony between the rivals was palpable as they exchanged cutting words.'},
@@ -405,9 +387,9 @@ const DAYS = [
       {w:'Germane',pos:'adj',m:'Relevant and appropriate to the matter in hand.',eg:'The senator brought up a point germane to the current political debate.'},
       {w:'Gregarious',pos:'adj',m:'Fond of company or groups; sociable.',eg:'Bruce Wayne demonstrated a surprisingly gregarious side at lavish parties.'},
       {w:'Immutable',pos:'adj',m:'Unchanging over time or unable to be changed.',eg:'Miranda Priestly\'s immutable demands created a culture of relentless perfection.'},
-      {w:'Probity',pos:'noun',m:'The quality of having strong moral principles; complete honesty.',eg:'Harvey Specter upheld a sense of probity even in murky corporate dealings.'},
+      {w:'Probity',pos:'noun',m:'The quality of having strong moral principles; complete honesty.',eg:'Harvey Specter upheld a sense of probity even in murky corporate law.'},
     ],
-    aeon:{title:'The play deficit',meta:'Aeon · ~13 min read',url:'https://aeon.co/essays/children-today-are-suffering-a-severe-deficit-of-play'},
+    aeon:{title:'The Art of Doing Nothing',meta:'Aeon · ~7 min read',url:'https://aeon.co/essays/the-surprising-benefits-of-boredom-and-doing-nothing'},
   },
   { vocab: [
       {w:'Assiduous',pos:'adj',m:'Showing great care and perseverance.',eg:'The assiduous student studied every night to ensure thorough understanding.'},
@@ -426,7 +408,7 @@ const DAYS = [
       {w:'Parochial',pos:'adj',m:'Having a limited or narrow outlook; insular.',eg:'The politician\'s parochial views failed to resonate with the diverse electorate.'},
       {w:'Repugnant',pos:'adj',m:'Extremely distasteful; unacceptable; causing disgust.',eg:'The corrupt politician\'s actions were universally condemned as repugnant.'},
     ],
-    aeon:{title:'The obesity era',meta:'Aeon · ~11 min read',url:'https://aeon.co/essays/blaming-individuals-for-obesity-may-be-altogether-wrong'},
+    aeon:{title:'How Minds Change',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-is-it-so-hard-to-change-your-mind-even-when-youre-wrong'},
   },
   { vocab: [
       {w:'Intransigent',pos:'adj',m:'Unwilling to change one\'s views or to agree; uncompromising.',eg:'Allen Shore stood intransigent, fiercely defending his clients with unyielding determination.'},
@@ -445,7 +427,7 @@ const DAYS = [
       {w:'Dogmatic',pos:'adj',m:'Inclined to lay down principles as undeniably true.',eg:'North Korea\'s dogmatic adherence to its ideology has led to persistent isolation.'},
       {w:'Effrontery',pos:'noun',m:'Insolent or impertinent behaviour; arrogant boldness.',eg:'Dr. House confronted the hospital administration with unapologetic effrontery.'},
     ],
-    aeon:{title:'Night school — can we learn while we sleep?',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/if-we-can-learn-while-asleep-when-will-we-ever-switch-off'},
+    aeon:{title:'The Distracted Mind',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/why-the-phone-is-so-hard-to-put-down-even-when-you-want-to'},
   },
   { vocab: [
       {w:'Forbearance',pos:'noun',m:'Patient self-control; restraint and tolerance.',eg:'Reddington exhibited remarkable forbearance, biding his time for the perfect opportunity.'},
@@ -462,9 +444,9 @@ const DAYS = [
       {w:'Vindicate',pos:'verb',m:'Clear from blame or suspicion; show to be right or justified.',eg:'Time would vindicate those who stood firm against popular opinion.'},
       {w:'Vigilant',pos:'adj',m:'Keeping careful watch for possible danger or difficulties.',eg:'The only verdict is vengeance for the vigilant and virtuous.'},
       {w:'Vivified',pos:'verb',m:'Made more lively, intense, or striking; animated.',eg:'His speech was vivified by passion and the weight of personal conviction.'},
-      {w:'Volition',pos:'noun',m:'The faculty or power of using one\'s will; free choice.',eg:'He acted entirely of his own volition, without external pressure.'},
+      {w:'Volition',pos:'noun',m:'The faculty or power of using one\'s will; free choice.',eg:'He acted entirely of his own volition, without any external pressure.'},
     ],
-    aeon:{title:'Escape the echo chamber',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/why-its-as-hard-to-escape-an-echo-chamber-as-it-is-to-flee-a-cult'},
+    aeon:{title:'The Examined Life',meta:'Aeon · ~8 min read',url:'https://aeon.co/essays/how-socratic-questioning-can-help-us-think-more-clearly'},
   },
   { vocab: [
       {w:'Sagacious',pos:'adj',m:'Having or showing keen mental discernment and good judgement; wise.',eg:'The CEO was known for his sagacious decision-making, always weighing pros and cons.'},
@@ -481,9 +463,9 @@ const DAYS = [
       {w:'Ruminate',pos:'verb',m:'Think deeply about something; ponder.',eg:'After the meeting, John couldn\'t stop ruminating on all he wished he had said.'},
       {w:'Solace',pos:'noun',m:'Comfort or consolation in a time of distress or sadness.',eg:'My only solace was that I would soon be reunited with the person I loved.'},
       {w:'Subjugate',pos:'verb',m:'Bring under domination or control, especially by conquest.',eg:'Henry asked for permission to invade and subjugate Ireland.'},
-      {w:'Turbid',pos:'adj',m:'(Of a liquid) cloudy, opaque, or thick with suspended matter.',eg:'The river water was so turbid it was impossible to see below.'},
+      {w:'Turbid',pos:'adj',m:'(Of a liquid) cloudy, opaque, or thick with suspended matter.',eg:'The river water was so turbid it was impossible to see more than a few inches below.'},
     ],
-    aeon:{title:'Childhood, disrupted',meta:'Aeon · ~12 min read',url:'https://aeon.co/essays/how-bad-experiences-in-childhood-lead-to-adult-illness'},
+    aeon:{title:'Why We Remember What We Remember',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-emotionally-significant-events-are-so-well-remembered'},
   },
   { vocab: [
       {w:'Specious',pos:'adj',m:'Superficially plausible but actually wrong; misleadingly attractive.',eg:'He used specious arguments that eventually fell apart under scrutiny.'},
@@ -500,22 +482,19 @@ const DAYS = [
       {w:'Abdicate',pos:'verb',m:'Fail to fulfil or undertake a responsibility or duty; renounce.',eg:'Prince Milosh was forced to abdicate and leave the country in 1839.'},
       {w:'Ameliorate',pos:'verb',m:'Make (something bad or unsatisfactory) better.',eg:'A centralised policy would compound, not ameliorate, the problem.'},
       {w:'Broach',pos:'verb',m:'Raise (a difficult subject) for discussion.',eg:'I didn\'t want to upset her, but I had to broach the subject of her constant lateness.'},
-      {w:'Cacophony',pos:'noun',m:'A harsh, discordant mixture of sounds.',eg:'The orchestra started as a cacophony before finding its rhythm.'},
+      {w:'Cacophony',pos:'noun',m:'A harsh, discordant mixture of sounds.',eg:'The orchestra\'s performance started as a cacophony before finding its rhythm.'},
     ],
-    aeon:{title:'Exodus — Elon Musk and Mars',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/elon-musk-puts-his-case-for-a-multi-planet-civilisation'},
+    aeon:{title:'The Shape of a Life',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/what-makes-a-life-well-lived-is-it-more-than-just-happiness'},
   },
 ];
 
 const TODO_ITEMS = [
-  {id:'vocab',  text:'Vocab Flashcards',  sub:'Learn today\'s 15 words'},
-  {id:'cr',     text:'CR Questions',      sub:'10 questions — attempt before revealing'},
-  {id:'rc',     text:'RC Practice',       sub:'3–4 passages from today\'s material'},
-  {id:'quant',  text:'Quant',             sub:'30 questions — Module / BMT'},
-  {id:'dilr',   text:'DILR',              sub:'3–4 sets'},
-  {id:'tricks', text:'Math Tricks',       sub:'15 mins — Vedic / shortcut methods'},
-  {id:'sudoku', text:'Sudoku',            sub:'One puzzle — medium or hard'},
-  {id:'aeon',   text:'Aeon Article',      sub:'Read and note one idea'},
-  {id:'review', text:'Vocab Revision',    sub:'Revisit yesterday\'s 15 words'},
+  {id:'rc',    text:'RC Practice',    sub:'3–4 passages from today\'s material'},
+  {id:'quant', text:'Quant',          sub:'30 questions — Module / BMT'},
+  {id:'dilr',  text:'DILR',           sub:'3–4 sets'},
+  {id:'mental',text:'Mental Math',    sub:'15 calculations'},
+  {id:'aeon',  text:'Aeon Article',   sub:'Read and note one idea'},
+  {id:'vocab', text:'Vocab Revision', sub:'Revisit yesterday\'s 15 words'},
 ];
 
 // ── STUDENTS ──
@@ -547,11 +526,11 @@ window.onload = () => {
 };
 
 function getDayIdx() {
-  const LAUNCH_DATE = 'Sun Jun 29 2026'; // Day 11 = Day 1 of new cycle
+  const LAUNCH_DATE = 'Tue Jun 17 2026'; // Day 1
   // Always reset to launch date — overrides any old localStorage value
   localStorage.setItem('ims_drill_start', LAUNCH_DATE);
   const diff = Math.floor((new Date() - new Date(LAUNCH_DATE)) / 86400000);
-  return diff % DAYS.length; // cycles back to Day 1 after Day 10
+  return Math.min(Math.max(diff, 0), DAYS.length - 1);
 }
 
 // ── LOGIN ──
@@ -588,14 +567,35 @@ function doFacultyLogin() {
   const pwd = prompt('Faculty password:');
   if (pwd !== 'IMS@Faculty') { alert('Incorrect.'); return; }
   user = { batch: 'FACULTY', name: 'Faculty Preview', pin: '000000' };
-  launch();
+  document.getElementById('topbar-user').textContent = 'Faculty Preview';
+  document.getElementById('topbar-user').style.display = 'block';
+  buildFacultyPicker();
+  showScreen('screen-faculty');
+}
+
+function buildFacultyPicker() {
+  const grid = document.getElementById('faculty-day-grid');
+  grid.innerHTML = '';
+  DAYS.forEach((d, i) => {
+    const btn = document.createElement('button');
+    btn.style.cssText = 'padding:14px 8px;background:var(--white);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-family:inherit;transition:all .15s;';
+    btn.innerHTML = '<div style="font-size:10px;font-weight:700;color:var(--slate);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;">Day</div><div style="font-size:22px;font-weight:900;color:var(--navy);">' + (i+1) + '</div>';
+    btn.onmouseover = () => { btn.style.background = 'var(--navy)'; btn.querySelector('div:last-child').style.color = '#fff'; btn.querySelector('div:first-child').style.color = 'var(--gold)'; };
+    btn.onmouseout  = () => { btn.style.background = 'var(--white)'; btn.querySelector('div:last-child').style.color = 'var(--navy)'; btn.querySelector('div:first-child').style.color = 'var(--slate)'; };
+    btn.onclick = (function(idx) { return function() {
+      todayIdx = idx;
+      buildMain();
+      buildCR();
+      showScreen('screen-main');
+    }; })(i);
+    grid.appendChild(btn);
+  });
 }
 
 function launch() {
   document.getElementById('topbar-user').textContent = user.name + ' · ' + user.batch;
   document.getElementById('topbar-user').style.display = 'block';
   buildMain();
-  buildCR();
   showScreen('screen-main');
 }
 
@@ -653,83 +653,6 @@ function flipAll() {
 }
 
 function toggleSec(id) { document.getElementById(id).classList.toggle('open'); }
-
-
-// ── CR QUESTIONS (10 per day, shared across all days) ──
-const CR_QUESTIONS = [
-  {q:'A study found students who take notes by hand retain information better than those who type. The researchers concluded that the physical act of writing forces deeper processing. Which most strengthens this?',
-   opts:['Students who type notes cover more material per hour.','Brain scans show greater activation in memory regions during handwriting than typing.','Typed notes are easier to organise and review later.','The study was conducted over only one semester.'],
-   ans:1, exp:'Brain activation in memory regions during handwriting directly supports the claim that writing forces deeper processing — a mechanistic link between the act and the outcome.'},
-  {q:'The city banned single-use plastic bags to reduce landfill waste. Studies show reusable bags are washed less frequently than recommended, leading to bacterial contamination. Therefore, the ban may have unintended health consequences. Which best evaluates this argument?',
-   opts:['The number of plastic bags in landfills has decreased since the ban.','Most foodborne illnesses come from improper food storage, not bags.','The argument assumes contaminated bags are actually used to carry food.','Reusable bags last an average of 5 years before being discarded.'],
-   ans:2, exp:'The argument only holds if contaminated bags actually contact food. Option C identifies this unstated assumption — if bags are not used for food, contamination is irrelevant to the health claim.'},
-  {q:'Politician: "Crime rates fell 20% after we increased police funding last year. Therefore, more police funding causes crime reduction." This reasoning is most vulnerable to which criticism?',
-   opts:['The 20% figure may be inaccurate.','Correlation does not imply causation — other factors may have reduced crime.','Police funding increased in other cities too.','The politician has a conflict of interest.'],
-   ans:1, exp:'Classic correlation-causation flaw. Crime may have dropped due to economic improvement, demographic shifts, etc. The politician attributes the effect to one cause without ruling out alternatives.'},
-  {q:'A pharmaceutical company\'s new drug reduces cholesterol by 30% in trials. The company concludes it will also reduce heart disease. Which assumption is the company making?',
-   opts:['All heart disease patients have high cholesterol.','High cholesterol is the primary cause of heart disease.','Lowering cholesterol necessarily reduces heart disease risk.','The drug has no side effects.'],
-   ans:2, exp:'The leap from "reduces cholesterol" to "reduces heart disease" requires assuming that reducing cholesterol reliably reduces heart disease risk — this is the bridging assumption being made.'},
-  {q:'When surveyed, 80% of employees at Company X said they were "satisfied" with their jobs. The HR manager concluded morale was high. Which most weakens this?',
-   opts:['The survey was anonymous.','The survey was conducted one week before annual bonuses.','Other companies have similar satisfaction rates.','The survey covered all departments equally.'],
-   ans:1, exp:'If employees knew bonuses were coming, satisfaction scores would be artificially elevated. This timing undermines the survey as a true measure of baseline morale.'},
-  {q:'A major record label found revenues from digital downloads dropped 40% after it raised prices by 25%. A new CEO concluded the price increase caused the revenue drop. Which weakens this most?',
-   opts:['The price increase was the largest in company history.','A popular free streaming platform launched during the same quarter as the price increase.','Other record labels also raised prices and saw similar drops.','Digital downloads are declining industry-wide due to streaming.'],
-   ans:1, exp:'The streaming platform launch provides an alternative explanation for the revenue drop independent of the price increase, directly weakening the causal conclusion.'},
-  {q:'An employee satisfaction survey showed 78% of workers were satisfied. A consultant concluded company morale was high. The survey was conducted one week before annual performance reviews and potential bonuses. This most:',
-   opts:['Strengthens the conclusion because employees had recent positive experiences.','Weakens the conclusion because anticipated rewards may have temporarily inflated responses.','Neither strengthens nor weakens — satisfaction is always high before bonuses.','Strengthens the conclusion because employees were engaged.'],
-   ans:1, exp:'Anticipation of bonuses can temporarily inflate satisfaction scores. The survey may not reflect true baseline morale, weakening the consultant conclusion.'},
-  {q:'"We should not invest in renewable energy because the technology is not yet mature enough to replace fossil fuels." Which most weakens this?',
-   opts:['Renewable energy currently provides less than 15% of global energy.','Investment in technology is precisely what matures it — renewables need investment to develop.','Fossil fuels are projected to run out within 200 years.','Many renewable energy companies are currently unprofitable.'],
-   ans:1, exp:'The argument is circular: don\'t invest because technology isn\'t mature, but technology matures through investment. This directly undermines the premise.'},
-  {q:'A city\'s hospital reported a 30% drop in emergency room wait times after implementing a new triage system. The hospital administrator credited the triage system. Which best evaluates this?',
-   opts:['The triage system must have worked — the data clearly shows improvement.','Wait times may have dropped due to a concurrent reduction in ER visitors, not the triage system.','The administrator is not medically qualified to evaluate the system.','A 30% drop is statistically significant in hospital settings.'],
-   ans:1, exp:'Fewer patients visiting the ER would reduce wait times regardless of the triage system. Without controlling for patient volume, the causal attribution is premature.'},
-  {q:'A school district found students in tutoring programs scored 18% higher in exams. The school board concluded tutoring programs improve academic performance. Which most strengthens this?',
-   opts:['Tutoring is expensive and not affordable for all students.','Students who enrolled in tutoring were randomly assigned, not self-selected.','The tutors had an average of 10 years of teaching experience.','Students in tutoring reported enjoying the sessions.'],
-   ans:1, exp:'Random assignment eliminates selection bias — the key alternative explanation. If high-achieving students self-select into tutoring, the improvement might reflect student quality, not program effectiveness.'},
-];
-
-function buildCR() {
-  const list = document.getElementById('cr-list');
-  if (!list) return;
-  list.innerHTML = '';
-  // Shuffle options for each question
-  CR_QUESTIONS.forEach((q, qi) => {
-    const idxArr = [0,1,2,3];
-    idxArr.sort(() => Math.random() - 0.5);
-    const shuffledOpts = idxArr.map(i => q.opts[i]);
-    const newAns = idxArr.indexOf(q.ans);
-
-    const div = document.createElement('div');
-    div.className = 'cr-q';
-    div.innerHTML = `<div class="cr-q-num">Q${qi+1} of ${CR_QUESTIONS.length}</div>
-      <div class="cr-q-text">${q.q}</div>
-      <div class="cr-opts" id="cro-${qi}"></div>
-      <button class="cr-reveal" id="crb-${qi}" onclick="revealCR(${qi},${newAns})">Reveal Answer</button>
-      <div class="cr-exp" id="cre-${qi}"><strong>Correct: (${String.fromCharCode(65+newAns)}) ${shuffledOpts[newAns]}</strong><br><br>${q.exp}</div>`;
-    shuffledOpts.forEach((opt, oi) => {
-      const btn = document.createElement('button');
-      btn.className = 'cr-opt';
-      btn.textContent = `(${String.fromCharCode(65+oi)}) ${opt}`;
-      btn.onclick = () => {
-        div.querySelectorAll('.cr-opt').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-      };
-      div.querySelector(`#cro-${qi}`).appendChild(btn);
-    });
-    list.appendChild(div);
-  });
-}
-
-function revealCR(qi, ans) {
-  document.getElementById(`crb-${qi}`).style.display = 'none';
-  document.getElementById(`cre-${qi}`).style.display = 'block';
-  const opts = document.querySelectorAll(`#cro-${qi} .cr-opt`);
-  opts.forEach((btn, i) => {
-    if (i === ans) btn.classList.add('correct');
-    else if (btn.classList.contains('selected')) btn.classList.add('wrong');
-  });
-}
 
 // ── SUBMIT ──
 function submitDay() {
