@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMS Daily Drill — CAT 26</title>
+<title>IMS Daily Drill — CAT 27</title>
 <style>
 :root {
   --navy: #1F3864;
@@ -127,7 +127,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
   <div class="topbar-brand">
     <div>
       <div class="topbar-title">IMS Daily Drill</div>
-      <div class="topbar-sub">CAT 26</div>
+      <div class="topbar-sub">CAT 27</div>
     </div>
   </div>
   <div class="topbar-user" id="topbar-user" style="display:none"></div>
@@ -138,7 +138,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
   <div class="login-wrap">
     <div class="login-logo"><img id="logo-img" src="" alt="IMS"></div>
     <div class="login-tagline">
-      <div class="tag">CAT 26 · Daily Drill</div>
+      <div class="tag">CAT 27 · Daily Drill</div>
       <h1>Show up every day.</h1>
       <p>15 words · Aeon article · Daily tasks</p>
     </div>
@@ -147,10 +147,8 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
         <label>Batch</label>
         <select id="batch-sel" onchange="loadStudents()">
           <option value="">— Select Batch —</option>
-          <option value="2604">CAT 2604</option>
-          <option value="2636">CAT 2636</option>
-          <option value="2641">CAT 2641</option>
-          <option value="2642">CAT 2642</option>
+          <option value="2701">CAT 2701</option>
+          <option value="2703">CAT 2703</option>
         </select>
       </div>
       <div class="form-group">
@@ -316,7 +314,7 @@ const DAYS = [
       {w:'Meretricious',pos:'adj',m:'Apparently attractive but having no real value or integrity.',eg:'The meretricious advertisement promised miraculous weight loss.'},
       {w:'Tendentious',pos:'adj',m:'Promoting a particular cause; biased.',eg:'The documentary was criticised for its tendentious framing.'},
     ],
-    aeon:{title:'Why We Sleep',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/what-is-sleep-and-why-do-we-spend-a-third-of-our-lives-doing-it'},
+    aeon:{title:'The empty brain',meta:'Aeon · ~12 min read',url:'https://aeon.co/essays/your-brain-does-not-process-information-and-it-is-not-a-computer'},
   },
   { vocab: [
       {w:'Iconoclast',pos:'noun',m:'A person who attacks cherished beliefs or institutions.',eg:'Galileo was an iconoclast who challenged the Church\'s cosmology.'},
@@ -335,7 +333,7 @@ const DAYS = [
       {w:'Cupidity',pos:'noun',m:'Greed for money or possessions.',eg:'His cupidity led him to embezzle from his own company.'},
       {w:'Ineluctable',pos:'adj',m:'Unable to be resisted or avoided; inescapable.',eg:'The ineluctable march of time changes everything.'},
     ],
-    aeon:{title:'The Paradox of Choice',meta:'Aeon · ~8 min read',url:'https://aeon.co/essays/is-having-too-many-options-actually-making-us-miserable'},
+    aeon:{title:'English is not normal',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/why-is-english-so-weirdly-different-from-other-languages'},
   },
   { vocab: [
       {w:'Abase',pos:'verb',m:'To lower in rank or reputation; humiliate or degrade.',eg:'The bully constantly tried to abase his classmates to feel superior.'},
@@ -354,7 +352,7 @@ const DAYS = [
       {w:'Encomium',pos:'noun',m:'A formal expression of high praise.',eg:'The finest encomium was passed on him by the queen herself.'},
       {w:'Fulminate',pos:'verb',m:'To express strong and angry criticism; to explode violently.',eg:'He has been fulminating against the world and archaeology in particular.'},
     ],
-    aeon:{title:'Against Productivity',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/against-productivity-why-busywork-makes-us-feel-safe'},
+    aeon:{title:'Fuck work',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/what-if-jobs-are-not-the-solution-but-the-problem'},
   },
   { vocab: [
       {w:'Garrulous',pos:'adj',m:'Excessively talkative, especially on trivial matters.',eg:'The garrulous taxi driver narrated his entire life story.'},
@@ -373,7 +371,7 @@ const DAYS = [
       {w:'Ubiquitous',pos:'adj',m:'Present, appearing, or found everywhere.',eg:'Mobile phones have become ubiquitous in modern life.'},
       {w:'Venerable',pos:'adj',m:'Deserving high respect due to age, wisdom, or character.',eg:'There has been a noticeable decline in venerable British institutions.'},
     ],
-    aeon:{title:'The Limits of Empathy',meta:'Aeon · ~11 min read',url:'https://aeon.co/essays/against-empathy-its-not-the-source-of-good-morality'},
+    aeon:{title:'Indifference is a power',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-stoicism-is-one-of-the-best-mind-hacks-ever-devised'},
   },
   { vocab: [
       {w:'Acrimony',pos:'noun',m:'Bitterness or ill feeling in speech or manner.',eg:'The acrimony between the rivals was palpable as they exchanged cutting words.'},
@@ -392,7 +390,7 @@ const DAYS = [
       {w:'Immutable',pos:'adj',m:'Unchanging over time or unable to be changed.',eg:'Miranda Priestly\'s immutable demands created a culture of relentless perfection.'},
       {w:'Probity',pos:'noun',m:'The quality of having strong moral principles; complete honesty.',eg:'Harvey Specter upheld a sense of probity even in murky corporate law.'},
     ],
-    aeon:{title:'The Art of Doing Nothing',meta:'Aeon · ~7 min read',url:'https://aeon.co/essays/the-surprising-benefits-of-boredom-and-doing-nothing'},
+    aeon:{title:'The play deficit',meta:'Aeon · ~13 min read',url:'https://aeon.co/essays/children-today-are-suffering-a-severe-deficit-of-play'},
   },
   { vocab: [
       {w:'Assiduous',pos:'adj',m:'Showing great care and perseverance.',eg:'The assiduous student studied every night to ensure thorough understanding.'},
@@ -411,10 +409,10 @@ const DAYS = [
       {w:'Parochial',pos:'adj',m:'Having a limited or narrow outlook; insular.',eg:'The politician\'s parochial views failed to resonate with the diverse electorate.'},
       {w:'Repugnant',pos:'adj',m:'Extremely distasteful; unacceptable; causing disgust.',eg:'The corrupt politician\'s actions were universally condemned as repugnant.'},
     ],
-    aeon:{title:'How Minds Change',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-is-it-so-hard-to-change-your-mind-even-when-youre-wrong'},
+    aeon:{title:'The obesity era',meta:'Aeon · ~11 min read',url:'https://aeon.co/essays/blaming-individuals-for-obesity-may-be-altogether-wrong'},
   },
   { vocab: [
-      {w:'Intransigent',pos:'adj',m:'Unwilling to change one\'s views or to agree; uncompromising.',eg:'Allen Shore stood intransigent, fiercely defending his clients with unyielding determination.'},
+      {w:'Inveigle',pos:'verb',m:'Persuade someone to do something by means of deception or flattery.',eg:'He managed to inveigle his way into the exclusive club by charming the doorman.'},
       {w:'Jeopardy',pos:'noun',m:'Danger of loss, harm, or failure; peril.',eg:'Ignoring safety regulations put the workers\' lives in jeopardy.'},
       {w:'Knave',pos:'noun',m:'A dishonest or unscrupulous man.',eg:'Caesar recognised Cassius as a cunning knave disguising treachery behind loyalty.'},
       {w:'Lethargic',pos:'adj',m:'Affected by lethargy; sluggish and apathetic.',eg:'After a heavy meal, John felt lethargic and unmotivated to do anything.'},
@@ -430,7 +428,7 @@ const DAYS = [
       {w:'Dogmatic',pos:'adj',m:'Inclined to lay down principles as undeniably true.',eg:'North Korea\'s dogmatic adherence to its ideology has led to persistent isolation.'},
       {w:'Effrontery',pos:'noun',m:'Insolent or impertinent behaviour; arrogant boldness.',eg:'Dr. House confronted the hospital administration with unapologetic effrontery.'},
     ],
-    aeon:{title:'The Distracted Mind',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/why-the-phone-is-so-hard-to-put-down-even-when-you-want-to'},
+    aeon:{title:'The macho sperm myth',meta:'Aeon · ~8 min read',url:'https://aeon.co/essays/the-idea-that-sperm-race-to-the-egg-is-just-another-macho-myth'},
   },
   { vocab: [
       {w:'Forbearance',pos:'noun',m:'Patient self-control; restraint and tolerance.',eg:'Reddington exhibited remarkable forbearance, biding his time for the perfect opportunity.'},
@@ -449,7 +447,7 @@ const DAYS = [
       {w:'Vivified',pos:'verb',m:'Made more lively, intense, or striking; animated.',eg:'His speech was vivified by passion and the weight of personal conviction.'},
       {w:'Volition',pos:'noun',m:'The faculty or power of using one\'s will; free choice.',eg:'He acted entirely of his own volition, without any external pressure.'},
     ],
-    aeon:{title:'The Examined Life',meta:'Aeon · ~8 min read',url:'https://aeon.co/essays/how-socratic-questioning-can-help-us-think-more-clearly'},
+    aeon:{title:'A philosophy of home',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/what-ancient-philosophy-really-thought-about-domestic-life'},
   },
   { vocab: [
       {w:'Sagacious',pos:'adj',m:'Having or showing keen mental discernment and good judgement; wise.',eg:'The CEO was known for his sagacious decision-making, always weighing pros and cons.'},
@@ -468,10 +466,10 @@ const DAYS = [
       {w:'Subjugate',pos:'verb',m:'Bring under domination or control, especially by conquest.',eg:'Henry asked for permission to invade and subjugate Ireland.'},
       {w:'Turbid',pos:'adj',m:'(Of a liquid) cloudy, opaque, or thick with suspended matter.',eg:'The river water was so turbid it was impossible to see more than a few inches below.'},
     ],
-    aeon:{title:'Why We Remember What We Remember',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-emotionally-significant-events-are-so-well-remembered'},
+    aeon:{title:'The joy of autism',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-being-autistic-can-be-a-lot-of-fun'},
   },
   { vocab: [
-      {w:'Specious',pos:'adj',m:'Superficially plausible but actually wrong; misleadingly attractive.',eg:'He used specious arguments that eventually fell apart under scrutiny.'},
+      {w:'Sanguine',pos:'adj',m:'Optimistic or positive, especially in a difficult situation.',eg:'Despite the setback, she remained sanguine about the project\'s eventual success.'},
       {w:'Suppliant',pos:'adj',m:'Making a humble or earnest plea; entreating.',eg:'The emperor was a suppliant in the British camp after the decisive battle.'},
       {w:'Tenuous',pos:'adj',m:'Very weak or slight; thin and insubstantial.',eg:'Everyone is jumping on the World Cup bandwagon, however tenuous their product link.'},
       {w:'Transpire',pos:'verb',m:'Come to be known; occur or happen.',eg:'It became clear that the event would not transpire as planned due to bad weather.'},
@@ -487,16 +485,217 @@ const DAYS = [
       {w:'Broach',pos:'verb',m:'Raise (a difficult subject) for discussion.',eg:'I didn\'t want to upset her, but I had to broach the subject of her constant lateness.'},
       {w:'Cacophony',pos:'noun',m:'A harsh, discordant mixture of sounds.',eg:'The orchestra\'s performance started as a cacophony before finding its rhythm.'},
     ],
-    aeon:{title:'The Shape of a Life',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/what-makes-a-life-well-lived-is-it-more-than-just-happiness'},
+    aeon:{title:'Exodus',meta:'Aeon · ~14 min read',url:'https://aeon.co/essays/elon-musk-puts-his-case-for-a-multi-planet-civilisation'},
+  },
+
+  // ── DAY 11 ──
+  { vocab: [
+      {w:'Aplomb',pos:'noun',m:'Self-confidence or assurance, especially in a demanding situation.',eg:'She handled the tough interview questions with remarkable aplomb.'},
+      {w:'Brusque',pos:'adj',m:'Abrupt or offhand in speech or manner.',eg:'The manager\'s brusque reply left the new employee feeling dismissed.'},
+      {w:'Capitulate',pos:'verb',m:'Cease to resist; submit or yield to an opponent.',eg:'After weeks of siege, the garrison finally capitulated.'},
+      {w:'Deride',pos:'verb',m:'Express contempt for; ridicule.',eg:'Critics derided the policy as both naive and unworkable.'},
+      {w:'Ebullient',pos:'adj',m:'Cheerful and full of energy; exuberant.',eg:'Her ebullient personality made every meeting feel lighter.'},
+      {w:'Facetious',pos:'adj',m:'Treating serious issues with deliberately inappropriate humour.',eg:'His facetious remark during the funeral offended several guests.'},
+      {w:'Gravitas',pos:'noun',m:'Dignity, seriousness, or solemnity of manner.',eg:'The veteran diplomat spoke with a gravitas that commanded the room.'},
+      {w:'Hapless',pos:'adj',m:'Unfortunate; luckless.',eg:'The hapless intern was blamed for an error he didn\'t make.'},
+      {w:'Iconic',pos:'adj',m:'Widely recognised and well-established; emblematic.',eg:'The iconic skyline has appeared in countless films.'},
+      {w:'Jaded',pos:'adj',m:'Tired, bored, or lacking enthusiasm, typically after overindulgence.',eg:'Years of corporate politics had left him jaded and cynical.'},
+      {w:'Keen',pos:'adj',m:'Having or showing eagerness or enthusiasm.',eg:'She was keen to start the new project right away.'},
+      {w:'Languid',pos:'adj',m:'Displaying or having a disinclination for physical exertion or effort; slow.',eg:'The afternoon passed in a languid haze of heat and silence.'},
+      {w:'Munificent',pos:'adj',m:'Larger or more generous than is usual or necessary.',eg:'The donor\'s munificent gift funded the entire scholarship programme.'},
+      {w:'Nonchalant',pos:'adj',m:'Feeling or appearing casually calm and relaxed; unconcerned.',eg:'He shrugged off the criticism with a nonchalant smile.'},
+      {w:'Obfuscate',pos:'verb',m:'Render obscure, unclear, or unintelligible, often deliberately.',eg:'The report seemed designed to obfuscate rather than clarify the findings.'},
+    ],
+    aeon:{title:'When Stoicism is a political virtue',meta:'Aeon · ~11 min read',url:'https://aeon.co/essays/when-stoicism-is-a-political-not-just-a-personal-virtue'},
+  },
+  // ── DAY 12 ──
+  { vocab: [
+      {w:'Palpable',pos:'adj',m:'Able to be touched or felt; so intense as to seem almost tangible.',eg:'The tension in the courtroom was palpable as the verdict was read.'},
+      {w:'Quandary',pos:'noun',m:'A state of uncertainty or perplexity over what to do in a difficult situation.',eg:'She found herself in a quandary, torn between two equally bad options.'},
+      {w:'Rancour',pos:'noun',m:'Bitterness or resentfulness, especially when long-standing.',eg:'Years after the divorce, a quiet rancour still lingered between them.'},
+      {w:'Stoic',pos:'adj',m:'Enduring pain or hardship without showing feelings or complaining.',eg:'He remained stoic throughout the gruelling recovery process.'},
+      {w:'Taciturn',pos:'adj',m:'Reserved or uncommunicative in speech; saying little.',eg:'The taciturn farmer rarely spoke more than a few words at a time.'},
+      {w:'Umbrage',pos:'noun',m:'Offence or annoyance.',eg:'She took umbrage at the suggestion that her work was careless.'},
+      {w:'Vex',pos:'verb',m:'Make someone feel annoyed, frustrated, or worried.',eg:'The constant interruptions began to vex even the most patient teacher.'},
+      {w:'Wary',pos:'adj',m:'Feeling or showing caution about possible dangers or problems.',eg:'Investors remained wary of the volatile market conditions.'},
+      {w:'Abeyance',pos:'noun',m:'A state of temporary disuse or suspension.',eg:'The project was held in abeyance until further funding arrived.'},
+      {w:'Bemused',pos:'adj',m:'Puzzled; confused.',eg:'He gave a bemused shrug, unsure what to make of the strange request.'},
+      {w:'Candour',pos:'noun',m:'The quality of being open and honest in expression.',eg:'Her candour about the company\'s failures earned her unexpected respect.'},
+      {w:'Demure',pos:'adj',m:'Reserved, modest, and shy, especially in manner or dress.',eg:'The demure bridesmaid quietly avoided the spotlight all evening.'},
+      {w:'Equanimity',pos:'noun',m:'Mental calmness, composure, and evenness of temper, especially in a difficult situation.',eg:'She faced the layoff news with surprising equanimity.'},
+      {w:'Furtive',pos:'adj',m:'Attempting to avoid notice or attention, typically because of guilt.',eg:'He cast a furtive glance over his shoulder before slipping out.'},
+      {w:'Glib',pos:'adj',m:'Fluent and voluble but insincere or shallow.',eg:'His glib excuses failed to convince anyone in the room.'},
+    ],
+    aeon:{title:'No boss? No thanks',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/far-from-making-them-obsolete-flatter-firms-need-managers-more'},
+  },
+  // ── DAY 13 ──
+  { vocab: [
+      {w:'Hackneyed',pos:'adj',m:'Lacking significance through having been overused; unoriginal and trite.',eg:'The speech was full of hackneyed phrases about teamwork and synergy.'},
+      {w:'Ingenuous',pos:'adj',m:'Innocent and unsuspecting; naive.',eg:'Her ingenuous trust in strangers worried her more cautious friends.'},
+      {w:'Junket',pos:'noun',m:'A trip or journey, especially one taken by an official at public expense.',eg:'The senator was criticised for a luxury junket disguised as a fact-finding mission.'},
+      {w:'Kindle',pos:'verb',m:'Light or set on fire; arouse or inspire a feeling.',eg:'The mentor\'s words kindled a passion for science in the young student.'},
+      {w:'Lambast',pos:'verb',m:'Criticise harshly or in a humiliating manner.',eg:'Critics lambasted the film for its weak script and poor pacing.'},
+      {w:'Maverick',pos:'noun',m:'An unorthodox or independent-minded person.',eg:'The maverick CEO ignored convention and built a wildly successful company.'},
+      {w:'Nefarious',pos:'adj',m:'Wicked or criminal in nature.',eg:'The detective slowly uncovered the villain\'s nefarious plot.'},
+      {w:'Obstreperous',pos:'adj',m:'Noisy and difficult to control.',eg:'The obstreperous crowd refused to settle down even after repeated warnings.'},
+      {w:'Placate',pos:'verb',m:'Make someone less angry or hostile.',eg:'He offered a sincere apology to placate his frustrated client.'},
+      {w:'Quell',pos:'verb',m:'Put an end to, typically by force; suppress.',eg:'Riot police were called in to quell the growing unrest.'},
+      {w:'Reticent',pos:'adj',m:'Not revealing one\'s thoughts or feelings readily.',eg:'He remained reticent about his plans for the future.'},
+      {w:'Salient',pos:'adj',m:'Most noticeable or important.',eg:'The report highlighted the salient points of the negotiation.'},
+      {w:'Trenchant',pos:'adj',m:'Vigorous or incisive in expression or style.',eg:'Her trenchant critique exposed the flaws in the proposal immediately.'},
+      {w:'Unassuming',pos:'adj',m:'Not pretentious or arrogant; modest.',eg:'Despite his fame, the actor remained remarkably unassuming.'},
+      {w:'Vacillate',pos:'verb',m:'Waver between different opinions or actions; be indecisive.',eg:'The committee continued to vacillate over the budget decision.'},
+    ],
+    aeon:{title:'The tyranny of work',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/jobs-have-become-a-relentless-unsatisfying-toil-why-does-work-still-hold-sway'},
+  },
+  // ── DAY 14 ──
+  { vocab: [
+      {w:'Wanton',pos:'adj',m:'Deliberate and unprovoked; reckless and unrestrained.',eg:'The court condemned the wanton destruction of public property.'},
+      {w:'Yoke',pos:'verb',m:'Link or unite two things together, especially in a restrictive way.',eg:'The two departments were yoked together under a single new manager.'},
+      {w:'Zealot',pos:'noun',m:'A person who is fanatical and uncompromising in pursuit of their ideals.',eg:'The zealot refused to consider any view other than his own.'},
+      {w:'Acumen',pos:'noun',m:'The ability to make good judgements and quick decisions, typically in a particular domain.',eg:'Her business acumen helped the startup survive its first difficult year.'},
+      {w:'Beguile',pos:'verb',m:'Charm or enchant someone, sometimes in a deceptive way.',eg:'The con artist beguiled investors with promises of impossible returns.'},
+      {w:'Circumspect',pos:'adj',m:'Wary and unwilling to take risks.',eg:'The lawyer advised a circumspect approach before signing anything.'},
+      {w:'Decorous',pos:'adj',m:'In keeping with good taste and propriety; polite and restrained.',eg:'Guests were expected to maintain decorous behaviour at the formal dinner.'},
+      {w:'Effusive',pos:'adj',m:'Expressing feelings of gratitude, pleasure, or approval in an unrestrained manner.',eg:'She gave an effusive thank-you speech that ran far over time.'},
+      {w:'Fortuitous',pos:'adj',m:'Happening by chance, especially a happy or beneficial chance.',eg:'Their fortuitous meeting at the conference led to a decade-long partnership.'},
+      {w:'Guile',pos:'noun',m:'Sly or cunning intelligence; deceit.',eg:'He used guile rather than force to outmanoeuvre his rivals.'},
+      {w:'Histrionic',pos:'adj',m:'Excessively theatrical or dramatic in character or style.',eg:'Her histrionic reaction to the minor setback surprised her colleagues.'},
+      {w:'Impetuous',pos:'adj',m:'Acting or done quickly and without thought or care.',eg:'His impetuous decision to quit cost him a stable career.'},
+      {w:'Judicious',pos:'adj',m:'Having, showing, or done with good judgement or sense.',eg:'A judicious investor diversifies rather than chasing single big wins.'},
+      {w:'Kismet',pos:'noun',m:'Destiny; fate.',eg:'Meeting her future business partner at that random conference felt like kismet.'},
+      {w:'Lachrymose',pos:'adj',m:'Tearful or given to weeping; inducing tears.',eg:'The film\'s lachrymose final act left the entire audience in tears.'},
+    ],
+    aeon:{title:'How the work ethic became a substitute for good jobs',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/how-the-work-ethic-became-a-substitute-for-good-jobs'},
+  },
+  // ── DAY 15 ──
+  { vocab: [
+      {w:'Mercurial',pos:'adj',m:'Subject to sudden or unpredictable changes of mood or mind.',eg:'The mercurial director was known for changing the script overnight.'},
+      {w:'Nadir',pos:'noun',m:'The lowest or most unsuccessful point in a situation.',eg:'The company\'s reputation hit its nadir after the scandal broke.'},
+      {w:'Onerous',pos:'adj',m:'Involving heavy obligations; burdensome.',eg:'The new compliance rules placed an onerous burden on small businesses.'},
+      {w:'Paucity',pos:'noun',m:'The presence of something in only small or insufficient quantities; scarcity.',eg:'A paucity of evidence weakened the prosecution\'s case.'},
+      {w:'Quixotic',pos:'adj',m:'Exceedingly idealistic; unrealistic and impractical.',eg:'His quixotic plan to reform the entire industry overnight was doomed.'},
+      {w:'Recondite',pos:'adj',m:'Little known; abstruse and obscure.',eg:'The professor\'s lecture delved into recondite corners of medieval philosophy.'},
+      {w:'Surreptitious',pos:'adj',m:'Kept secret, especially because it would not be approved of.',eg:'He took a surreptitious look at his phone during the meeting.'},
+      {w:'Torpid',pos:'adj',m:'Mentally or physically inactive; lethargic.',eg:'The summer heat left the entire office feeling torpid and unmotivated.'},
+      {w:'Unctuous',pos:'adj',m:'Excessively flattering or ingratiating in a way that is unpleasant or insincere.',eg:'The salesman\'s unctuous manner made customers uneasy.'},
+      {w:'Vapid',pos:'adj',m:'Offering nothing that is stimulating or challenging; dull.',eg:'The vapid small talk at the party left her longing to leave.'},
+      {w:'Winsome',pos:'adj',m:'Attractive or appealing in appearance or character.',eg:'The winsome puppy charmed everyone at the shelter.'},
+      {w:'Xenial',pos:'adj',m:'Relating to hospitality, especially between host and guest.',eg:'The village was known for its xenial customs toward travellers.'},
+      {w:'Yearn',pos:'verb',m:'Have an intense feeling of longing for something.',eg:'After years abroad, she began to yearn for home.'},
+      {w:'Zenith',pos:'noun',m:'The time at which something is most powerful or successful.',eg:'The empire reached its zenith in the early third century.'},
+      {w:'Abate',pos:'verb',m:'Become less intense or widespread.',eg:'The storm finally began to abate after midnight.'},
+    ],
+    aeon:{title:'Don\'t quit your day job',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/dont-quit-your-day-job-the-benefits-of-being-a-bifurcator'},
+  },
+  // ── DAY 16 ──
+  { vocab: [
+      {w:'Bombastic',pos:'adj',m:'High-sounding but with little meaning; inflated.',eg:'The politician\'s bombastic speech impressed few and convinced fewer.'},
+      {w:'Convivial',pos:'adj',m:'Friendly, lively, and enjoyable, especially in atmosphere.',eg:'The convivial dinner party stretched well past midnight.'},
+      {w:'Despot',pos:'noun',m:'A ruler or other person who holds absolute power, typically exercised cruelly.',eg:'The despot ruled with an iron fist for nearly three decades.'},
+      {w:'Eclectic',pos:'adj',m:'Deriving ideas, style, or taste from a broad and diverse range of sources.',eg:'Her eclectic taste in music ranged from opera to punk rock.'},
+      {w:'Florid',pos:'adj',m:'Excessively intricate or elaborate, especially in style.',eg:'The novel\'s florid prose slowed the pace of the story considerably.'},
+      {w:'Garrulity',pos:'noun',m:'Excessive talkativeness, especially on trivial matters.',eg:'His garrulity at the meeting tested everyone\'s patience.'},
+      {w:'Histrionics',pos:'noun',m:'Exaggerated dramatic behaviour designed to attract attention.',eg:'The team grew tired of his constant histrionics over minor issues.'},
+      {w:'Implacable',pos:'adj',m:'Unable to be appeased or pacified; relentless.',eg:'His implacable determination eventually wore down every objection.'},
+      {w:'Jocular',pos:'adj',m:'Fond of or characterised by joking; humorous or playful.',eg:'His jocular tone lightened the otherwise tense negotiation.'},
+      {w:'Kowtow',pos:'verb',m:'Act in an excessively subservient manner.',eg:'He refused to kowtow to the demands of his overbearing boss.'},
+      {w:'Languish',pos:'verb',m:'Lose or lack vitality; grow weak.',eg:'The proposal languished in committee for over a year.'},
+      {w:'Mawkish',pos:'adj',m:'Sentimental in a feeble or sickly way.',eg:'Critics dismissed the film\'s ending as mawkish and unearned.'},
+      {w:'Nebulous',pos:'adj',m:'In the form of a cloud or haze; vague or ill-defined.',eg:'His plans for the company remained frustratingly nebulous.'},
+      {w:'Officious',pos:'adj',m:'Assertive of authority in an annoyingly domineering way.',eg:'The officious clerk insisted on following every rule to the letter.'},
+      {w:'Panacea',pos:'noun',m:'A solution or remedy for all difficulties or diseases.',eg:'No single policy can serve as a panacea for economic inequality.'},
+    ],
+    aeon:{title:'Digital technology is not to blame for our hyperfast lives',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/digital-technology-is-not-to-blame-for-our-hyperfast-lives'},
+  },
+  // ── DAY 17 ──
+  { vocab: [
+      {w:'Quagmire',pos:'noun',m:'A soft boggy area of land; a difficult, complex situation.',eg:'The negotiations had become a political quagmire with no end in sight.'},
+      {w:'Raucous',pos:'adj',m:'Making or constituting a disturbingly harsh and loud noise.',eg:'The raucous crowd cheered wildly as the final goal was scored.'},
+      {w:'Stalwart',pos:'adj',m:'Loyal, reliable, and hardworking.',eg:'She remained a stalwart supporter of the cause for over twenty years.'},
+      {w:'Truncate',pos:'verb',m:'Shorten something by cutting off the top or end.',eg:'The editor was forced to truncate the article to fit the page.'},
+      {w:'Unwitting',pos:'adj',m:'Not aware of the full facts; unintentional.',eg:'The courier became an unwitting accomplice in the smuggling operation.'},
+      {w:'Vehement',pos:'adj',m:'Showing strong feeling; forceful, passionate, or intense.',eg:'He offered a vehement denial of all the allegations against him.'},
+      {w:'Wily',pos:'adj',m:'Skilled at gaining an advantage, especially deceitfully.',eg:'The wily negotiator extracted concessions nobody thought possible.'},
+      {w:'Xenophobe',pos:'noun',m:'A person with a deep dislike of people from other countries.',eg:'The candidate was widely condemned for his xenophobic rhetoric.'},
+      {w:'Yielding',pos:'adj',m:'Tending to give way or comply readily.',eg:'Her yielding nature made her an easy target for manipulative colleagues.'},
+      {w:'Zealous',pos:'adj',m:'Having or showing great energy or enthusiasm in pursuit of a cause.',eg:'The zealous volunteer worked tirelessly to organise the relief effort.'},
+      {w:'Acerbic',pos:'adj',m:'Sharp and forthright in tone, often with biting wit.',eg:'Her acerbic comments during the review left junior staff visibly uneasy.'},
+      {w:'Brevity',pos:'noun',m:'Concise and exact use of words in writing or speech.',eg:'The editor praised the brevity and clarity of the final draft.'},
+      {w:'Cajole',pos:'verb',m:'Persuade someone to do something by sustained coaxing or flattery.',eg:'She managed to cajole her brother into helping with the move.'},
+      {w:'Dearth',pos:'noun',m:'A scarcity or lack of something.',eg:'There was a dearth of qualified candidates for the specialised role.'},
+      {w:'Diatribe',pos:'noun',m:'A forceful and bitter verbal attack against someone or something.',eg:'He launched into a diatribe against the new office policy.'},
+    ],
+    aeon:{title:'Is the utopian workplace just a ploy?',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/is-the-utopian-workplace-just-a-ploy-to-keep-us-all-at-work'},
+  },
+  // ── DAY 18 ──
+  { vocab: [
+      {w:'Fastidious',pos:'adj',m:'Very attentive to and concerned about accuracy and detail.',eg:'His fastidious attention to detail made him an excellent editor.'},
+      {w:'Genial',pos:'adj',m:'Friendly and cheerful in manner.',eg:'The genial host made every guest feel instantly welcome.'},
+      {w:'Hyperbole',pos:'noun',m:'Exaggerated statements or claims not meant to be taken literally.',eg:'The advertisement was full of hyperbole about the product\'s benefits.'},
+      {w:'Impeccable',pos:'adj',m:'In accordance with the highest standards; faultless.',eg:'Her impeccable manners impressed even the most demanding hosts.'},
+      {w:'Jubilant',pos:'adj',m:'Feeling or expressing great happiness and triumph.',eg:'The jubilant crowd celebrated long into the night after the victory.'},
+      {w:'Kinetic',pos:'adj',m:'Relating to or resulting from motion; full of energy and movement.',eg:'The film\'s kinetic action sequences kept audiences on the edge of their seats.'},
+      {w:'Lethargy',pos:'noun',m:'A lack of energy and enthusiasm.',eg:'A wave of lethargy swept over the office after the long lunch.'},
+      {w:'Mollify',pos:'verb',m:'Appease the anger or anxiety of someone; calm down.',eg:'The manager tried to mollify the upset customer with a refund.'},
+      {w:'Nuance',pos:'noun',m:'A subtle difference in or shade of meaning, expression, or sound.',eg:'The translator struggled to capture every nuance of the original poem.'},
+      {w:'Opaque',pos:'adj',m:'Not able to be seen through; not transparent; hard to understand.',eg:'The company\'s pricing structure remained frustratingly opaque to customers.'},
+      {w:'Pragmatic',pos:'adj',m:'Dealing with things sensibly and realistically in a practical way.',eg:'She took a pragmatic approach to solving the budget shortfall.'},
+      {w:'Quibble',pos:'verb',m:'Argue or complain about a trivial matter.',eg:'They continued to quibble over minor wording in the contract.'},
+      {w:'Resilient',pos:'adj',m:'Able to withstand or recover quickly from difficult conditions.',eg:'The resilient economy bounced back faster than analysts had predicted.'},
+      {w:'Scrupulous',pos:'adj',m:'Diligent, thorough, and extremely attentive to detail.',eg:'His scrupulous record-keeping made the audit remarkably smooth.'},
+      {w:'Tactful',pos:'adj',m:'Having or showing skill and sensitivity in dealing with others.',eg:'She gave tactful feedback that didn\'t discourage the new intern.'},
+    ],
+    aeon:{title:'What Kant can teach us about work',meta:'Aeon · ~10 min read',url:'https://aeon.co/essays/what-kant-can-teach-us-about-work-on-the-problem-with-jobs'},
+  },
+  // ── DAY 19 ──
+  { vocab: [
+      {w:'Unfettered',pos:'adj',m:'Not held back or restricted; free.',eg:'The artist enjoyed unfettered creative control over the entire project.'},
+      {w:'Vicarious',pos:'adj',m:'Experienced in the imagination through the feelings or actions of another person.',eg:'She felt a vicarious thrill watching her daughter accept the award.'},
+      {w:'Wistful',pos:'adj',m:'Having or showing a feeling of vague or regretful longing.',eg:'He looked back at his old school with a wistful smile.'},
+      {w:'Acrid',pos:'adj',m:'Unpleasantly bitter or pungent, especially in taste or smell.',eg:'An acrid smell of smoke filled the abandoned warehouse.'},
+      {w:'Banal',pos:'adj',m:'So lacking in originality as to be obvious and boring.',eg:'The film\'s banal dialogue undermined an otherwise interesting plot.'},
+      {w:'Cogitate',pos:'verb',m:'Think deeply about something; meditate or reflect.',eg:'He sat quietly to cogitate over the difficult decision ahead.'},
+      {w:'Debacle',pos:'noun',m:'A sudden and ignominious failure; a fiasco.',eg:'The product launch turned into a complete debacle within hours.'},
+      {w:'Erudite',pos:'adj',m:'Having or showing great knowledge or learning.',eg:'The erudite professor could discuss almost any topic with authority.'},
+      {w:'Fervent',pos:'adj',m:'Having or displaying passionate intensity.',eg:'She remained a fervent advocate for climate policy reform.'},
+      {w:'Grandiose',pos:'adj',m:'Impressive or affecting in appearance or scale, often pretentiously so.',eg:'His grandiose plans for the company rarely matched the available budget.'},
+      {w:'Hindrance',pos:'noun',m:'A thing that impedes or holds back progress.',eg:'Limited funding proved to be the biggest hindrance to the research.'},
+      {w:'Insipid',pos:'adj',m:'Lacking flavour or vigour; bland and dull.',eg:'The reviewer called the soup insipid and badly seasoned.'},
+      {w:'Juxtapose',pos:'verb',m:'Place or deal with close together for contrasting effect.',eg:'The exhibit juxtaposed ancient artefacts with modern digital art.'},
+      {w:'Kudos',pos:'noun',m:'Praise and honour received for an achievement.',eg:'The team received well-deserved kudos for finishing the project early.'},
+      {w:'Lugubrious',pos:'adj',m:'Looking or sounding sad and dismal.',eg:'The lugubrious soundtrack matched the film\'s bleak tone perfectly.'},
+    ],
+    aeon:{title:'Why we must seize leisurely interludes',meta:'Aeon · ~9 min read',url:'https://aeon.co/essays/why-we-must-seize-leisurely-interludes-from-works-confines'},
+  },
+  // ── DAY 20 ──
+  { vocab: [
+      {w:'Magnanimous',pos:'adj',m:'Generous or forgiving, especially toward a rival or less powerful person.',eg:'The winning team was magnanimous in victory, praising their opponents.'},
+      {w:'Nettle',pos:'verb',m:'Cause someone to feel irritated or annoyed.',eg:'His casual dismissal of her work clearly nettled her.'},
+      {w:'Obstinate',pos:'adj',m:'Stubbornly refusing to change one\'s opinion or course of action.',eg:'The obstinate child refused to apologise despite repeated requests.'},
+      {w:'Pithy',pos:'adj',m:'Concise and forcefully expressive.',eg:'Her pithy one-liner summed up the entire debate perfectly.'},
+      {w:'Querulousness',pos:'noun',m:'The state of complaining in a petulant or whining manner.',eg:'His constant querulousness made him difficult to work alongside.'},
+      {w:'Rebuke',pos:'verb',m:'Express sharp disapproval or criticism of someone.',eg:'The coach publicly rebuked the player for his poor attitude.'},
+      {w:'Staid',pos:'adj',m:'Sedate, respectable, and unadventurous.',eg:'The staid old firm was slow to adopt any new technology.'},
+      {w:'Tirade',pos:'noun',m:'A long, angry speech of criticism or accusation.',eg:'The coach launched into a furious tirade after the missed penalty.'},
+      {w:'Untenable',pos:'adj',m:'Not able to be maintained or defended against attack or objection.',eg:'His position on the issue quickly became untenable.'},
+      {w:'Vitriolic',pos:'adj',m:'Filled with bitter criticism or malice.',eg:'The review was so vitriolic that the author considered legal action.'},
+      {w:'Wane',pos:'verb',m:'Decrease in vigour, power, or extent; become weaker.',eg:'Public interest in the scandal began to wane after a few weeks.'},
+      {w:'Xenogenic',pos:'adj',m:'Originating outside the organism or system; foreign in origin.',eg:'The xenogenic material triggered an unexpected immune response.'},
+      {w:'Yen',pos:'noun',m:'A longing or strong desire.',eg:'She had a sudden yen to travel somewhere she\'d never been.'},
+      {w:'Zest',pos:'noun',m:'Great enthusiasm and energy.',eg:'He approached every new challenge with remarkable zest.'},
+      {w:'Abrasive',pos:'adj',m:'Showing little concern for the feelings of others; harsh.',eg:'His abrasive management style drove several talented employees away.'},
+    ],
+    aeon:{title:'We have the tools to work less and live better',meta:'Aeon · ~8 min read',url:'https://aeon.co/ideas/we-have-the-tools-and-technology-to-work-less-and-live-better'},
   },
 ];
 
 const TODO_ITEMS = [
   {id:'vocab',  text:'Vocab Flashcards',  sub:'Learn today\'s 15 words'},
   {id:'cr',     text:'CR Questions',      sub:'10 questions from the 1000 CR PDF'},
-  {id:'rc',     text:'RC Practice',       sub:'3–4 passages from today\'s material'},
-  {id:'quant',  text:'Quant',             sub:'30 questions — Module / BMT'},
-  {id:'dilr',   text:'DILR',              sub:'3–4 sets'},
+  {id:'rc',     text:'RC Practice',       sub:'3 passages from today\'s material'},
+  {id:'quant',  text:'Quant',             sub:'20 questions — Module / BMT'},
+  {id:'dilr',   text:'DILR',              sub:'2–3 sets'},
   {id:'tricks', text:'Math Tricks',       sub:'15 mins — Vedic / shortcut methods'},
   {id:'sudoku', text:'Sudoku',            sub:'One puzzle — medium or hard'},
   {id:'aeon',   text:'Aeon Article',      sub:'Read and note one idea'},
@@ -505,17 +704,75 @@ const TODO_ITEMS = [
 
 // ── STUDENTS ──
 const STUDENTS = {
-  '2604': [
-    {name:'AERIK Patel',pin:'IMS0001152690'},{name:'Aarya Shah',pin:'IMS0001156319'},{name:'Annushri Shah',pin:'IMS0001153920'},{name:'Aryan Ghinaiya',pin:'IMS0001126836'},{name:'Daksh Bhansali',pin:'IMS0001152273'},{name:'Dev Khatva',pin:'IMS0001147753'},{name:'Dev Shah',pin:'IMS0001147567'},{name:'Dev Tejani',pin:'IMS0001156135'},{name:'Devanshi Vagashiya',pin:'IMS0001145494'},{name:'Dhyan Patel',pin:'IMS0001153919'},{name:'Drashti Parmar',pin:'IMS0001150745'},{name:'Gopi Chodvadiya',pin:'IMS0001145495'},{name:'Hetvi Doshi',pin:'IMS0001143755'},{name:'Jayani Bhatt',pin:'IMS0001154434'},{name:'Jethi Ahuja',pin:'IMS0001152076'},{name:'Krish Patel',pin:'IMS0001152688'},{name:'Krish Tejani',pin:'IMS0001155192'},{name:'Krisha Vagasiya',pin:'IMS0001147448'},{name:'Kritika Punjabi',pin:'IMS0001148610'},{name:'Mayank Karangiya',pin:'IMS0001146568'},{name:'Meet Shah',pin:'IMS0001155001'},{name:'Nand Patel',pin:'IMS0001151335'},{name:'Nihalpuri Goswami',pin:'IMS0001140417'},{name:'Nishit Lukkad',pin:'IMS0001151675'},{name:'Piyush Vanjani',pin:'IMS0001144949'},{name:'Pradyumn Dadhania',pin:'IMS0001144584'},{name:'Prem Dhanwani',pin:'IMS0001144950'},{name:'Srashti Panwar',pin:'IMS0001127131'},{name:'Tanisha Parmar',pin:'IMS0001153362'},{name:'VATSAL JAIN',pin:'IMS0001152275'},{name:'Vinit Godhani',pin:'IMS0001147974'},
+  '2701': [
+    {name:'Aarav Makwana',pin:'STU0001216900'},
+    {name:'Bhoomi Agrawal',pin:'STU0001186796'},
+    {name:'Dhairya Patel',pin:'STU0001219283'},
+    {name:'Dhruneev Bhatti',pin:'STU0001199529'},
+    {name:'Dhruv Ratnavat',pin:'STU0001212958'},
+    {name:'Dhyey Patel',pin:'STU0001214855'},
+    {name:'Dikshant Lalani',pin:'STU0001214922'},
+    {name:'Divyam Jaiswal',pin:'STU0001192199'},
+    {name:'Drashti Mandaliya',pin:'STU0001186619'},
+    {name:'Hancy Shah',pin:'STU0001211567'},
+    {name:'Kangana Kuntal',pin:'STU0001189638'},
+    {name:'Kathan Doshi',pin:'STU0001206400'},
+    {name:'Khushal Jain',pin:'STU0001212859'},
+    {name:'Kuldeep Chavda',pin:'STU0001217378'},
+    {name:'Madhav Porwal',pin:'STU0001214170'},
+    {name:'Manav Gangdev',pin:'STU0001209779'},
+    {name:'Mannat Desai',pin:'STU0001216736'},
+    {name:'Margi Doriya',pin:'STU0001198483'},
+    {name:'Mayank Kajani',pin:'STU0001215430'},
+    {name:'Naman Choubisa',pin:'STU0001196934'},
+    {name:'Nami Shah',pin:'STU0001210889'},
+    {name:'Namya Vora',pin:'STU0001188684'},
+    {name:'Narendra Patel',pin:'STU0001217481'},
+    {name:'Netra Upadhyay',pin:'STU0001185393'},
+    {name:'Nishtha Prajapati',pin:'STU0001189639'},
+    {name:'Paramdev Soni',pin:'STU0001219027'},
+    {name:'Prince Chauhan',pin:'STU0001211013'},
+    {name:'Suhani Maheshwari',pin:'STU0001206273'},
+    {name:'Sujal Khatri',pin:'STU0001201011'},
+    {name:'Tejas Bharakhda',pin:'IMS0001134303'},
+    {name:'Twisha Roy',pin:'STU0001215195'},
+    {name:'Vansh Galani',pin:'STU0001187915'},
+    {name:'Vanshika Kamdar',pin:'STU0001217482'},
+    {name:'Vinayak Vegda',pin:'STU0001192301'},
   ],
-  '2636': [
-    {name:'Aashni Bhatt',pin:'STU0001254221'},{name:'Abhinav Kumar',pin:'STU0001256898'},{name:'Amoli Patel',pin:'IMS0001098173'},{name:'Aryan Mishra',pin:'STU0001252658'},{name:'Bhavya Diwan',pin:'STU0001253787'},{name:'Darsh Tibrewal',pin:'IMS0000982346'},{name:'Devang Patel',pin:'STU0001255384'},{name:'Dhanvi Patel',pin:'STU0001254212'},{name:'Dhaval Patel',pin:'STU0001240550'},{name:'Faizan Sherasiya',pin:'STU0001256886'},{name:'Harsha Madhad',pin:'IMS0001156653'},{name:'Jal Shah',pin:'STU0001252759'},{name:'KaustavJyoti Gogoi',pin:'STU0001255400'},{name:'Khadija Sadik',pin:'IMS0001043059'},{name:'Khooshi Sonkar',pin:'STU0001257321'},{name:'Krutarth Vyas',pin:'STU0001255188'},{name:'Manav Mehta',pin:'STU0001250691'},{name:'Mehul Gehlot',pin:'STU0001256414'},{name:'Naitik Khandelwal',pin:'STU0001251645'},{name:'Niket Joshi',pin:'STU0001180847'},{name:'Nisarg Thakkar',pin:'STU0001256834'},{name:'Oum Patidar',pin:'STU0001254286'},{name:'Prince Patel',pin:'IMS0001143518'},{name:'Priyanshi Soni',pin:'STU0001176939'},{name:'Rahul Yadav',pin:'STU0001252319'},{name:'Ritisha Gulati',pin:'STU0001255330'},{name:'Sanvi Mehta',pin:'STU0001256686'},{name:'Shagun Rawat',pin:'STU0001255634'},{name:'Sharanya Unnithan',pin:'STU0001253601'},{name:'Shashwat Jain',pin:'STU0001256707'},{name:'Shreni Mutta',pin:'IMS0001149985'},{name:'Shrey Jain',pin:'STU0001253220'},{name:'Shreya Patel',pin:'STU0001255370'},{name:'Srishti Saraf',pin:'STU0001255920'},{name:'Vani Banthia',pin:'STU0001256220'},{name:'Vedant Prajapati',pin:'IMS0001065318'},{name:'dhruv pipaliya',pin:'IMS0001124618'},
-  ],
-  '2641': [
-    {name:'Akshat Changela',pin:'IMS0000986808'},{name:'Anshul Gustin',pin:'STU0001184962'},{name:'Arnav Sharma',pin:'STU0001204912'},{name:'Bhakti Arora',pin:'STU0001260550'},{name:'Bhargav Navadiya',pin:'STU0001197903'},{name:'Bhoomi Arora',pin:'IMS0001157291'},{name:'Bhuvi Kejriwal',pin:'STU0001256932'},{name:'Dinil Shah',pin:'STU0001259818'},{name:'Dipanshi Panchal',pin:'STU0001183406'},{name:'Divyam Agarwal',pin:'STU0001257972'},{name:'Drishan Maheshwari',pin:'STU0001261629'},{name:'Haryush Nirmal',pin:'STU0001261312'},{name:'Heet Lakhani',pin:'STU0001238201'},{name:'Het Prajapati',pin:'STU0001261504'},{name:'Himanshu Kumar',pin:'STU0001261337'},{name:'Ishita Sharma',pin:'STU0001261652'},{name:'Jainil Desai',pin:'STU0001260196'},{name:'Jay Sapariya',pin:'STU0001254675'},{name:'Jeet Dave',pin:'STU0001260502'},{name:'Kareena Soni',pin:'STU0001261521'},{name:'Khushi Shah',pin:'STU0001261762'},{name:'Kshitij Bhavsar',pin:'IMS0001157433'},{name:'Kundan Mahibal',pin:'STU0001260844'},{name:'Kushagra Singhal',pin:'STU0001261257'},{name:'Manav Parikh',pin:'STU0001259650'},{name:'Meet Prajapati',pin:'STU0001260497'},{name:'Pankti Rupani',pin:'STU0001251999'},{name:'Rahul Nathwani',pin:'STU0001261786'},{name:'Riddhi Lalwani',pin:'IMS0000992154'},{name:'Saumil Agrawal',pin:'STU0001256727'},{name:'Shivam Gohil',pin:'IMS0000937356'},{name:'Shreyansh Chhajed',pin:'STU0001211485'},{name:'Siddhi Balwani',pin:'STU0001256988'},{name:'Stuti Chechani',pin:'STU0001223125'},{name:'Sujal Nikam',pin:'STU0001205432'},{name:'Tirth Jyotishi',pin:'STU0001261733'},{name:'Vansh Shah',pin:'STU0001258931'},{name:'Ved Bechara',pin:'STU0001260920'},{name:'Vihaan Gandhi',pin:'STU0001258919'},{name:'Vishwajit Dabhi',pin:'STU0001261364'},{name:'Vraj Padhiyar',pin:'STU0001262871'},{name:'Yash Patel',pin:'STU0001259535'},{name:'Yashvi Ashara',pin:'STU0001194091'},{name:'Yesha Gohil',pin:'STU0001234210'},
-  ],
-  '2642': [
-    {name:'Abhishek Yadav',pin:'STU0001172636'},{name:'Akshat Voriya',pin:'IMS0001151609'},{name:'Analpreetsing Bhatia',pin:'STU0001262799'},{name:'Arzav Jain',pin:'IMS0001077247'},{name:'Avi Raval',pin:'STU0001243060'},{name:'Bansari Patel',pin:'STU0001261888'},{name:'Bhoomi Sangtani',pin:'STU0001263496'},{name:'Christy Tomy',pin:'STU0001263143'},{name:'Darshan Lakhara',pin:'STU0001261402'},{name:'Deval Devda',pin:'STU0001262145'},{name:'Devesh Tansukhani',pin:'IMS0001110744'},{name:'Dhruv Pankhaniya',pin:'STU0001171695'},{name:'Dhwani Gajjar',pin:'STU0001262809'},{name:'Dhyey Patel',pin:'IMS0001129195'},{name:'Divya Patel',pin:'STU0001263775'},{name:'Gautam Tarani',pin:'IMS0001118342'},{name:'Gokul Ezhava',pin:'STU0001262972'},{name:'Harsh Joshi',pin:'STU0001263720'},{name:'Harsh Solanki',pin:'STU0001262834'},{name:'Harshita Verma',pin:'IMS0001106963'},{name:'Himani Priyamwada',pin:'STU0001252345'},{name:'Jay Talati',pin:'STU0001255137'},{name:'Karvi Anjaria',pin:'STU0001262657'},{name:'Khushi Sharma',pin:'STU0001188150'},{name:'Krish Rohira',pin:'IMS0001070170'},{name:'Krunal Unadkat',pin:'STU0001247660'},{name:'Krusha Sheth',pin:'STU0001252295'},{name:'Moxit Patel',pin:'STU0001263198'},{name:'Nirdhar Samdani',pin:'STU0001262132'},{name:'Nirupam Mehta',pin:'STU0001261887'},{name:'Om Modh',pin:'STU0001263406'},{name:'Parth Parmar',pin:'STU0001262664'},{name:'Prachi Gehlot',pin:'STU0001260609'},{name:'Prakhar Agarwal',pin:'STU0001262639'},{name:'Rahil Shah',pin:'STU0001264352'},{name:'Rahul Chaudhary',pin:'STU0001263949'},{name:'Sanidhya Mishra',pin:'IMS0001144887'},{name:'Sumit Kumar',pin:'STU0001260190'},{name:'Surya Kothari',pin:'STU0001239601'},{name:'Vedant Bhatt',pin:'STU0001261633'},{name:'Vrajrajsinh Sisodiya',pin:'STU0001202939'},
+  '2703': [
+    {name:'Abhishek Panchal',pin:'STU0001220427'},
+    {name:'Aniket Hadiya',pin:'STU0001211280'},
+    {name:'Atharv Kherodia',pin:'STU0001220591'},
+    {name:'Charmi Parekh',pin:'STU0001230777'},
+    {name:'Devarsh Patel',pin:'STU0001192461'},
+    {name:'Harsh Vadecha',pin:'STU0001173822'},
+    {name:'Henil Shah',pin:'STU0001231592'},
+    {name:'Himanshi Mirchandani',pin:'STU0001225206'},
+    {name:'Jagrut Thummar',pin:'STU0001232215'},
+    {name:'Jugal Patel',pin:'STU0001199925'},
+    {name:'Kalgi Prajapati',pin:'STU0001188403'},
+    {name:'Khushi Aghera',pin:'STU0001224304'},
+    {name:'Khushi Patel',pin:'STU0001210940'},
+    {name:'Kinjal Gandhi',pin:'STU0001220465'},
+    {name:'Kunj Patel',pin:'STU0001190336'},
+    {name:'Milind Nagpara',pin:'STU0001217279'},
+    {name:'Omi Lathiya',pin:'STU0001227129'},
+    {name:'Parth Parmar',pin:'STU0001227528'},
+    {name:'Prachi Dhulera',pin:'STU0001231341'},
+    {name:'Prutha Patel',pin:'STU0001227415'},
+    {name:'Purva Dhrangu',pin:'STU0001230083'},
+    {name:'Purva Patel',pin:'IMS0001137946'},
+    {name:'Raina Desai',pin:'STU0001220414'},
+    {name:'Rena Vaghasiya',pin:'STU0001233513'},
+    {name:'Riya Shah',pin:'STU0001206550'},
+    {name:'Roshan Batheja',pin:'STU0001215156'},
+    {name:'Sandeep Modhvadiya',pin:'STU0001220088'},
+    {name:'Saumya Patel',pin:'STU0001186595'},
+    {name:'Shubham Singh',pin:'STU0001196677'},
+    {name:'Smit Thakkar',pin:'STU0001229642'},
+    {name:'Vallabh Maheshwari',pin:'STU0001223017'},
+    {name:'Vandan Kakadiya',pin:'STU0001211282'},
   ],
 };
 
@@ -536,7 +793,7 @@ function getDayIdx() {
   // Always reset to launch date — overrides any old localStorage value
   localStorage.setItem('ims_drill_start', LAUNCH_DATE);
   const diff = Math.floor((new Date() - new Date(LAUNCH_DATE)) / 86400000);
-  return Math.min(Math.max(diff, 0), DAYS.length - 1);
+  return diff % DAYS.length; // cycles through all 20 days, then repeats
 }
 
 // ── LOGIN ──
