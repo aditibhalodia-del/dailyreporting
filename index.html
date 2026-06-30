@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IMS Daily Drill — CAT 27</title>
+<title>IMS Daily Drill — CAT 26</title>
 <style>
 :root {
   --navy: #1F3864;
@@ -127,7 +127,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
   <div class="topbar-brand">
     <div>
       <div class="topbar-title">IMS Daily Drill</div>
-      <div class="topbar-sub">CAT 27</div>
+      <div class="topbar-sub">CAT 26</div>
     </div>
   </div>
   <div class="topbar-user" id="topbar-user" style="display:none"></div>
@@ -138,7 +138,7 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
   <div class="login-wrap">
     <div class="login-logo"><img id="logo-img" src="" alt="IMS"></div>
     <div class="login-tagline">
-      <div class="tag">CAT 27 · Daily Drill</div>
+      <div class="tag">CAT 26 · Daily Drill</div>
       <h1>Show up every day.</h1>
       <p>15 words · Aeon article · Daily tasks</p>
     </div>
@@ -147,8 +147,10 @@ body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--cream);
         <label>Batch</label>
         <select id="batch-sel" onchange="loadStudents()">
           <option value="">— Select Batch —</option>
-          <option value="2701">CAT 2701</option>
-          <option value="2703">CAT 2703</option>
+          <option value="2604">CAT 2604</option>
+          <option value="2636">CAT 2636</option>
+          <option value="2641">CAT 2641</option>
+          <option value="2642">CAT 2642</option>
         </select>
       </div>
       <div class="form-group">
@@ -693,9 +695,9 @@ const DAYS = [
 const TODO_ITEMS = [
   {id:'vocab',  text:'Vocab Flashcards',  sub:'Learn today\'s 15 words'},
   {id:'cr',     text:'CR Questions',      sub:'10 questions from the 1000 CR PDF'},
-  {id:'rc',     text:'RC Practice',       sub:'3 passages from today\'s material'},
-  {id:'quant',  text:'Quant',             sub:'20 questions — Module / BMT'},
-  {id:'dilr',   text:'DILR',              sub:'2–3 sets'},
+  {id:'rc',     text:'RC Practice',       sub:'3–4 passages from today\'s material'},
+  {id:'quant',  text:'Quant',             sub:'30 questions — Module / BMT'},
+  {id:'dilr',   text:'DILR',              sub:'3–4 sets'},
   {id:'tricks', text:'Math Tricks',       sub:'15 mins — Vedic / shortcut methods'},
   {id:'sudoku', text:'Sudoku',            sub:'One puzzle — medium or hard'},
   {id:'aeon',   text:'Aeon Article',      sub:'Read and note one idea'},
@@ -704,75 +706,17 @@ const TODO_ITEMS = [
 
 // ── STUDENTS ──
 const STUDENTS = {
-  '2701': [
-    {name:'Aarav Makwana',pin:'STU0001216900'},
-    {name:'Bhoomi Agrawal',pin:'STU0001186796'},
-    {name:'Dhairya Patel',pin:'STU0001219283'},
-    {name:'Dhruneev Bhatti',pin:'STU0001199529'},
-    {name:'Dhruv Ratnavat',pin:'STU0001212958'},
-    {name:'Dhyey Patel',pin:'STU0001214855'},
-    {name:'Dikshant Lalani',pin:'STU0001214922'},
-    {name:'Divyam Jaiswal',pin:'STU0001192199'},
-    {name:'Drashti Mandaliya',pin:'STU0001186619'},
-    {name:'Hancy Shah',pin:'STU0001211567'},
-    {name:'Kangana Kuntal',pin:'STU0001189638'},
-    {name:'Kathan Doshi',pin:'STU0001206400'},
-    {name:'Khushal Jain',pin:'STU0001212859'},
-    {name:'Kuldeep Chavda',pin:'STU0001217378'},
-    {name:'Madhav Porwal',pin:'STU0001214170'},
-    {name:'Manav Gangdev',pin:'STU0001209779'},
-    {name:'Mannat Desai',pin:'STU0001216736'},
-    {name:'Margi Doriya',pin:'STU0001198483'},
-    {name:'Mayank Kajani',pin:'STU0001215430'},
-    {name:'Naman Choubisa',pin:'STU0001196934'},
-    {name:'Nami Shah',pin:'STU0001210889'},
-    {name:'Namya Vora',pin:'STU0001188684'},
-    {name:'Narendra Patel',pin:'STU0001217481'},
-    {name:'Netra Upadhyay',pin:'STU0001185393'},
-    {name:'Nishtha Prajapati',pin:'STU0001189639'},
-    {name:'Paramdev Soni',pin:'STU0001219027'},
-    {name:'Prince Chauhan',pin:'STU0001211013'},
-    {name:'Suhani Maheshwari',pin:'STU0001206273'},
-    {name:'Sujal Khatri',pin:'STU0001201011'},
-    {name:'Tejas Bharakhda',pin:'IMS0001134303'},
-    {name:'Twisha Roy',pin:'STU0001215195'},
-    {name:'Vansh Galani',pin:'STU0001187915'},
-    {name:'Vanshika Kamdar',pin:'STU0001217482'},
-    {name:'Vinayak Vegda',pin:'STU0001192301'},
+  '2604': [
+    {name:'AERIK Patel',pin:'IMS0001152690'},{name:'Aarya Shah',pin:'IMS0001156319'},{name:'Annushri Shah',pin:'IMS0001153920'},{name:'Aryan Ghinaiya',pin:'IMS0001126836'},{name:'Daksh Bhansali',pin:'IMS0001152273'},{name:'Dev Khatva',pin:'IMS0001147753'},{name:'Dev Shah',pin:'IMS0001147567'},{name:'Dev Tejani',pin:'IMS0001156135'},{name:'Devanshi Vagashiya',pin:'IMS0001145494'},{name:'Dhyan Patel',pin:'IMS0001153919'},{name:'Drashti Parmar',pin:'IMS0001150745'},{name:'Gopi Chodvadiya',pin:'IMS0001145495'},{name:'Hetvi Doshi',pin:'IMS0001143755'},{name:'Jayani Bhatt',pin:'IMS0001154434'},{name:'Jethi Ahuja',pin:'IMS0001152076'},{name:'Krish Patel',pin:'IMS0001152688'},{name:'Krish Tejani',pin:'IMS0001155192'},{name:'Krisha Vagasiya',pin:'IMS0001147448'},{name:'Kritika Punjabi',pin:'IMS0001148610'},{name:'Mayank Karangiya',pin:'IMS0001146568'},{name:'Meet Shah',pin:'IMS0001155001'},{name:'Nand Patel',pin:'IMS0001151335'},{name:'Nihalpuri Goswami',pin:'IMS0001140417'},{name:'Nishit Lukkad',pin:'IMS0001151675'},{name:'Piyush Vanjani',pin:'IMS0001144949'},{name:'Pradyumn Dadhania',pin:'IMS0001144584'},{name:'Prem Dhanwani',pin:'IMS0001144950'},{name:'Srashti Panwar',pin:'IMS0001127131'},{name:'Tanisha Parmar',pin:'IMS0001153362'},{name:'VATSAL JAIN',pin:'IMS0001152275'},{name:'Vinit Godhani',pin:'IMS0001147974'},
   ],
-  '2703': [
-    {name:'Abhishek Panchal',pin:'STU0001220427'},
-    {name:'Aniket Hadiya',pin:'STU0001211280'},
-    {name:'Atharv Kherodia',pin:'STU0001220591'},
-    {name:'Charmi Parekh',pin:'STU0001230777'},
-    {name:'Devarsh Patel',pin:'STU0001192461'},
-    {name:'Harsh Vadecha',pin:'STU0001173822'},
-    {name:'Henil Shah',pin:'STU0001231592'},
-    {name:'Himanshi Mirchandani',pin:'STU0001225206'},
-    {name:'Jagrut Thummar',pin:'STU0001232215'},
-    {name:'Jugal Patel',pin:'STU0001199925'},
-    {name:'Kalgi Prajapati',pin:'STU0001188403'},
-    {name:'Khushi Aghera',pin:'STU0001224304'},
-    {name:'Khushi Patel',pin:'STU0001210940'},
-    {name:'Kinjal Gandhi',pin:'STU0001220465'},
-    {name:'Kunj Patel',pin:'STU0001190336'},
-    {name:'Milind Nagpara',pin:'STU0001217279'},
-    {name:'Omi Lathiya',pin:'STU0001227129'},
-    {name:'Parth Parmar',pin:'STU0001227528'},
-    {name:'Prachi Dhulera',pin:'STU0001231341'},
-    {name:'Prutha Patel',pin:'STU0001227415'},
-    {name:'Purva Dhrangu',pin:'STU0001230083'},
-    {name:'Purva Patel',pin:'IMS0001137946'},
-    {name:'Raina Desai',pin:'STU0001220414'},
-    {name:'Rena Vaghasiya',pin:'STU0001233513'},
-    {name:'Riya Shah',pin:'STU0001206550'},
-    {name:'Roshan Batheja',pin:'STU0001215156'},
-    {name:'Sandeep Modhvadiya',pin:'STU0001220088'},
-    {name:'Saumya Patel',pin:'STU0001186595'},
-    {name:'Shubham Singh',pin:'STU0001196677'},
-    {name:'Smit Thakkar',pin:'STU0001229642'},
-    {name:'Vallabh Maheshwari',pin:'STU0001223017'},
-    {name:'Vandan Kakadiya',pin:'STU0001211282'},
+  '2636': [
+    {name:'Aashni Bhatt',pin:'STU0001254221'},{name:'Abhinav Kumar',pin:'STU0001256898'},{name:'Amoli Patel',pin:'IMS0001098173'},{name:'Aryan Mishra',pin:'STU0001252658'},{name:'Bhavya Diwan',pin:'STU0001253787'},{name:'Darsh Tibrewal',pin:'IMS0000982346'},{name:'Devang Patel',pin:'STU0001255384'},{name:'Dhanvi Patel',pin:'STU0001254212'},{name:'Dhaval Patel',pin:'STU0001240550'},{name:'Faizan Sherasiya',pin:'STU0001256886'},{name:'Harsha Madhad',pin:'IMS0001156653'},{name:'Jal Shah',pin:'STU0001252759'},{name:'KaustavJyoti Gogoi',pin:'STU0001255400'},{name:'Khadija Sadik',pin:'IMS0001043059'},{name:'Khooshi Sonkar',pin:'STU0001257321'},{name:'Krutarth Vyas',pin:'STU0001255188'},{name:'Manav Mehta',pin:'STU0001250691'},{name:'Mehul Gehlot',pin:'STU0001256414'},{name:'Naitik Khandelwal',pin:'STU0001251645'},{name:'Niket Joshi',pin:'STU0001180847'},{name:'Nisarg Thakkar',pin:'STU0001256834'},{name:'Oum Patidar',pin:'STU0001254286'},{name:'Prince Patel',pin:'IMS0001143518'},{name:'Priyanshi Soni',pin:'STU0001176939'},{name:'Rahul Yadav',pin:'STU0001252319'},{name:'Ritisha Gulati',pin:'STU0001255330'},{name:'Sanvi Mehta',pin:'STU0001256686'},{name:'Shagun Rawat',pin:'STU0001255634'},{name:'Sharanya Unnithan',pin:'STU0001253601'},{name:'Shashwat Jain',pin:'STU0001256707'},{name:'Shreni Mutta',pin:'IMS0001149985'},{name:'Shrey Jain',pin:'STU0001253220'},{name:'Shreya Patel',pin:'STU0001255370'},{name:'Srishti Saraf',pin:'STU0001255920'},{name:'Vani Banthia',pin:'STU0001256220'},{name:'Vedant Prajapati',pin:'IMS0001065318'},{name:'dhruv pipaliya',pin:'IMS0001124618'},
+  ],
+  '2641': [
+    {name:'Akshat Changela',pin:'IMS0000986808'},{name:'Anshul Gustin',pin:'STU0001184962'},{name:'Arnav Sharma',pin:'STU0001204912'},{name:'Bhakti Arora',pin:'STU0001260550'},{name:'Bhargav Navadiya',pin:'STU0001197903'},{name:'Bhoomi Arora',pin:'IMS0001157291'},{name:'Bhuvi Kejriwal',pin:'STU0001256932'},{name:'Dinil Shah',pin:'STU0001259818'},{name:'Dipanshi Panchal',pin:'STU0001183406'},{name:'Divyam Agarwal',pin:'STU0001257972'},{name:'Drishan Maheshwari',pin:'STU0001261629'},{name:'Haryush Nirmal',pin:'STU0001261312'},{name:'Heet Lakhani',pin:'STU0001238201'},{name:'Het Prajapati',pin:'STU0001261504'},{name:'Himanshu Kumar',pin:'STU0001261337'},{name:'Ishita Sharma',pin:'STU0001261652'},{name:'Jainil Desai',pin:'STU0001260196'},{name:'Jay Sapariya',pin:'STU0001254675'},{name:'Jeet Dave',pin:'STU0001260502'},{name:'Kareena Soni',pin:'STU0001261521'},{name:'Khushi Shah',pin:'STU0001261762'},{name:'Kshitij Bhavsar',pin:'IMS0001157433'},{name:'Kundan Mahibal',pin:'STU0001260844'},{name:'Kushagra Singhal',pin:'STU0001261257'},{name:'Manav Parikh',pin:'STU0001259650'},{name:'Meet Prajapati',pin:'STU0001260497'},{name:'Pankti Rupani',pin:'STU0001251999'},{name:'Rahul Nathwani',pin:'STU0001261786'},{name:'Riddhi Lalwani',pin:'IMS0000992154'},{name:'Saumil Agrawal',pin:'STU0001256727'},{name:'Shivam Gohil',pin:'IMS0000937356'},{name:'Shreyansh Chhajed',pin:'STU0001211485'},{name:'Siddhi Balwani',pin:'STU0001256988'},{name:'Stuti Chechani',pin:'STU0001223125'},{name:'Sujal Nikam',pin:'STU0001205432'},{name:'Tirth Jyotishi',pin:'STU0001261733'},{name:'Vansh Shah',pin:'STU0001258931'},{name:'Ved Bechara',pin:'STU0001260920'},{name:'Vihaan Gandhi',pin:'STU0001258919'},{name:'Vishwajit Dabhi',pin:'STU0001261364'},{name:'Vraj Padhiyar',pin:'STU0001262871'},{name:'Yash Patel',pin:'STU0001259535'},{name:'Yashvi Ashara',pin:'STU0001194091'},{name:'Yesha Gohil',pin:'STU0001234210'},
+  ],
+  '2642': [
+    {name:'Abhishek Yadav',pin:'STU0001172636'},{name:'Akshat Voriya',pin:'IMS0001151609'},{name:'Analpreetsing Bhatia',pin:'STU0001262799'},{name:'Arzav Jain',pin:'IMS0001077247'},{name:'Avi Raval',pin:'STU0001243060'},{name:'Bansari Patel',pin:'STU0001261888'},{name:'Bhoomi Sangtani',pin:'STU0001263496'},{name:'Christy Tomy',pin:'STU0001263143'},{name:'Darshan Lakhara',pin:'STU0001261402'},{name:'Deval Devda',pin:'STU0001262145'},{name:'Devesh Tansukhani',pin:'IMS0001110744'},{name:'Dhruv Pankhaniya',pin:'STU0001171695'},{name:'Dhwani Gajjar',pin:'STU0001262809'},{name:'Dhyey Patel',pin:'IMS0001129195'},{name:'Divya Patel',pin:'STU0001263775'},{name:'Gautam Tarani',pin:'IMS0001118342'},{name:'Gokul Ezhava',pin:'STU0001262972'},{name:'Harsh Joshi',pin:'STU0001263720'},{name:'Harsh Solanki',pin:'STU0001262834'},{name:'Harshita Verma',pin:'IMS0001106963'},{name:'Himani Priyamwada',pin:'STU0001252345'},{name:'Jay Talati',pin:'STU0001255137'},{name:'Karvi Anjaria',pin:'STU0001262657'},{name:'Khushi Sharma',pin:'STU0001188150'},{name:'Krish Rohira',pin:'IMS0001070170'},{name:'Krunal Unadkat',pin:'STU0001247660'},{name:'Krusha Sheth',pin:'STU0001252295'},{name:'Moxit Patel',pin:'STU0001263198'},{name:'Nirdhar Samdani',pin:'STU0001262132'},{name:'Nirupam Mehta',pin:'STU0001261887'},{name:'Om Modh',pin:'STU0001263406'},{name:'Parth Parmar',pin:'STU0001262664'},{name:'Prachi Gehlot',pin:'STU0001260609'},{name:'Prakhar Agarwal',pin:'STU0001262639'},{name:'Rahil Shah',pin:'STU0001264352'},{name:'Rahul Chaudhary',pin:'STU0001263949'},{name:'Sanidhya Mishra',pin:'IMS0001144887'},{name:'Sumit Kumar',pin:'STU0001260190'},{name:'Surya Kothari',pin:'STU0001239601'},{name:'Vedant Bhatt',pin:'STU0001261633'},{name:'Vrajrajsinh Sisodiya',pin:'STU0001202939'},
   ],
 };
 
